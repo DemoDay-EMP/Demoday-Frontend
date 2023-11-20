@@ -24,6 +24,11 @@
   <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
   <link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet">
   <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+  <!-- Login -->
+  <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css" />
+  <link rel="stylesheet" href="./assets/css/login.css">
+  
   <!-- <link rel="stylesheet" href="./assets/css/card.scss"> -->
 
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
@@ -39,6 +44,7 @@
   <!-- Template Main CSS File -->
   <link href="./assets/css/style.css" rel="stylesheet">
 
+
   <!-- =======================================================
   * Template Name: Mentor
   * Updated: Sep 18 2023 with Bootstrap v5.3.2
@@ -50,9 +56,9 @@
 
 <body id="pag-servicos">
 
-  <!-- ======= Header ======= -->
+   <!-- ======= Header ======= -->
   
-  <header id="header" class="fixed-top">
+   <header id="header" class="fixed-top">
     <div class="social-links text-center text-md-right pt-3 pt-md-0">
       <a href="#" class="facebook depois"><i class="bx bxl-facebook"></i></a>
       <a href="#" class="instagram depois"><i class="bx bxl-instagram"></i></a>
@@ -77,18 +83,77 @@
               <li><a href="#">Artigos</a></li>
             </ul>
           </li>
-          <li><a href="pricing.html">Emocional</a></li>
+          <li><a href="./emocional.html">Emocional</a></li>
           <li><a href="pricing.html">Contato</a></li>
 
-          
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav><!-- .navbar -->
 
-      <a href="courses.html" class="get-started-btn">Login</a>
+      <button class="get-started-btn button" id="form-open">Login</button>
 
     </div>
   </header><!-- End Header -->
+
+  <section class="home">
+    <div class="form_container">
+      <i class="uil uil-times form_close"></i>
+      <!-- Login From -->
+      <div class="form login_form">
+        <form action="#">
+          <h2>Login</h2>
+
+          <div class="input_box">
+            <input type="email" placeholder="Insira seu email" required />
+            <i class="uil uil-envelope-alt email"></i>
+          </div>
+          <div class="input_box">
+            <input type="password" placeholder="Insira sua senha" required />
+            <i class="uil uil-lock password"></i>
+            <i class="uil uil-eye-slash pw_hide"></i>
+          </div>
+
+          <div class="option_field">
+            <span class="checkbox">
+              <input type="checkbox" id="check" />
+              <label for="check">Lembre-me</label>
+            </span>
+            <a href="#" class="forgot_pw">Esqueceu a senha?</a>
+          </div>
+
+          <button class="button">Login</button>
+
+          <div class="login_signup">Não possui uma conta? <a href="#" id="signup">Cadastre-se</a></div>
+        </form>
+      </div>
+
+      <!-- Signup From -->
+      <div class="form signup_form">
+        <form action="#">
+          <h2>Cadastrar</h2>
+
+          <div class="input_box">
+            <input type="email" placeholder="Insira seu email" required />
+            <i class="uil uil-envelope-alt email"></i>
+          </div>
+          <div class="input_box">
+            <input type="password" placeholder="Crie sua senha" required />
+            <i class="uil uil-lock password"></i>
+            <i class="uil uil-eye-slash pw_hide"></i>
+          </div>
+          <div class="input_box">
+            <input type="password" placeholder="Confirme sua senha" required />
+            <i class="uil uil-lock password"></i>
+            <i class="uil uil-eye-slash pw_hide"></i>
+          </div>
+
+          <button class="button">Cadastra-se</button>
+
+          <div class="login_signup">Já possui uma conta? <a href="#" id="login">Login</a></div>
+        </form>
+      </div>
+    </div>
+  </section>
 
    <!-- ======= Hero Section ======= -->
    <section id="hero-servicos" class="d-flex justify-content-center align-items-center">
@@ -119,7 +184,7 @@
               </div>
             </div>
   
-            <div class="col-lg-8 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="100">
+            <div class="col-lg-8 d-flex  " data-aos="zoom-in" data-aos-delay="100">
               <div class="icon-boxes d-flex flex-row flex-wrap  justify-content-around">
   
                 <div class="content-servicos" style="width: 300px; height: 250px;">
@@ -383,8 +448,9 @@
   <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
   <script src="assets/vendor/php-email-form/validate.js"></script>
 
-  <!-- Template Main JS File -->
-  <script src="assets/js/main.js"></script>
+ <!-- Template Main JS File -->
+ <script src="assets/js/main.js"></script>
+ <script src="assets/js/script-login.js"></script>
 
 </body>
 

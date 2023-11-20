@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 
 <head>
   <meta charset="utf-8">
@@ -13,13 +13,15 @@
   <link href="./assets/imagens/logo_empt3.png" rel="icon">
   <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 
-  <link rel="stylesheet" href="/assets/application.css?id=dc58cc52aa1f03927978a3f21393b9ab">
-  <link rel="stylesheet" href="https://acessa.org.br/assets/styles/6510d4ab5974b5e9453b122e675ad9a05530d00ea3e680877dc0a5c21fbef08e.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-polyfill/7.4.4/polyfill.min.js"></script>
   <script src="/assets/manifest.js?id=39cbaed2642ac22f2c03dc5592cdf731"></script>
   <script src="/assets/vendor.js?id=f135dae4076f3432dc5ec2e63984bb60"></script>
   <script src="/assets/application.js?id=20f67634953937fcd9b23b5ad970d2a2"></script>
- 
+
+  <link rel="stylesheet" href="https://acessa.org.br/assets/styles/6510d4ab5974b5e9453b122e675ad9a05530d00ea3e680877dc0a5c21fbef08e.css">
+
+
+
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
 
@@ -32,8 +34,24 @@
   <link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet">
   <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
 
+   <!-- Login -->
+   <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css" />
+   <link rel="stylesheet" href="./assets/css/login.css">
+   
+   <!-- <link rel="stylesheet" href="./assets/css/card.scss"> -->
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+<!-- Fonte -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Athiti:wght@600&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+
   <!-- Template Main CSS File -->
-  <link href="./assets/css/style.css" rel="stylesheet">
+  <link href="assets/css/style.css" rel="stylesheet">
 
   <!-- =======================================================
   * Template Name: Mentor
@@ -41,207 +59,264 @@
   * Template URL: https://bootstrapmade.com/mentor-free-education-bootstrap-theme/
   * Author: BootstrapMade.com
   * License: https://bootstrapmade.com/license/
-
   ======================================================== -->
-  
 </head>
 
 <body>
 
- <!-- ======= Header ======= -->
+   <!-- ======= Header ======= -->
   
- <header id="header" class="fixed-top">
-  <div class="social-links text-center text-md-right pt-3 pt-md-0">
-    <a href="#" class="facebook depois"><i class="bx bxl-facebook"></i></a>
-    <a href="#" class="instagram depois"><i class="bx bxl-instagram"></i></a>
-    <a href="#" class="linkedin depois"><i class="bx bxl-linkedin"></i></a>
-  </div>
-  <div class="container d-flex align-items-center">
+   <header id="header" class="fixed-top">
+    <div class="social-links text-center text-md-right pt-3 pt-md-0">
+      <a href="#" class="facebook depois"><i class="bx bxl-facebook"></i></a>
+      <a href="#" class="instagram depois"><i class="bx bxl-instagram"></i></a>
+      <a href="#" class="linkedin depois"><i class="bx bxl-linkedin"></i></a>
+    </div>
+    <div class="container d-flex align-items-center">
 
-    <h1 class="logo me-auto"><a href="index.html"> <img src="./assets/imagens/logo_emp.png" alt="Logo EMP"></a></h1>
-    <!-- Uncomment below if you prefer to use an image logo -->
-    <!-- <a href="index.html" class="logo me-auto"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
+      <h1 class="logo me-auto"><a href="index.html"> <img src="./assets/imagens/logo_emp.png" alt="Logo EMP"></a></h1>
+      <!-- Uncomment below if you prefer to use an image logo -->
+      <!-- <a href="index.html" class="logo me-auto"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
 
-    <nav id="navbar" class="navbar order-last order-lg-0">
-      <ul>
-        <li><a class="active" href="index.html">Home</a></li>
-  
-        <li><a href="sobrenos.html">Sobre nós</a></li>
-        <li><a href="servicos.html">Serviços</a></li>
-        <li><a href="trainers.html">Doe</a></li>
-        <li><a href="events.html">Planos</a></li>
-        <li class="dropdown"><a href="#"><span>Networking</span> <i class="bi bi-chevron-down"></i></a>
-          <ul>
-            <li><a href="#">Artigos</a></li>
-          </ul>
-        </li>
-        <li><a href="pricing.html">Emocional</a></li>
-        <li><a href="pricing.html">Contato</a></li>
+      <nav id="navbar" class="navbar order-last order-lg-0">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+    
+          <li><a href="sobrenos.html">Sobre nós</a></li>
+          <li><a href="servicos.html">Serviços</a></li>
+          <li><a href="trainers.html">Doe</a></li>
+          <li><a href="events.html">Planos</a></li>
+          <li class="dropdown"><a href="#"><span>Networking</span> <i class="bi bi-chevron-down"></i></a>
+            <ul>
+              <li><a href="#">Artigos</a></li>
+            </ul>
+          </li>
+          <li><a class="active"  href="./emocional.html">Emocional</a></li>
+          <li><a href="pricing.html">Contato</a></li>
 
-      </ul>
-      <i class="bi bi-list mobile-nav-toggle"></i>
-    </nav><!-- .navbar -->
+        </ul>
+        <i class="bi bi-list mobile-nav-toggle"></i>
+      </nav><!-- .navbar -->
 
-    <a href="courses.html" class="get-started-btn">Login</a>
+      <button class="get-started-btn button" id="form-open">Login</button>
 
-  </div>
-</header><!-- End Header -->
+    </div>
+  </header><!-- End Header -->
 
-<!-- ======= Hero Section ======= -->
+  <section class="home">
+    <div class="form_container">
+      <i class="uil uil-times form_close"></i>
+      <!-- Login From -->
+      <div class="form login_form">
+        <form action="#">
+          <h2>Login</h2>
+
+          <div class="input_box">
+            <input type="email" placeholder="Insira seu email" required />
+            <i class="uil uil-envelope-alt email"></i>
+          </div>
+          <div class="input_box">
+            <input type="password" placeholder="Insira sua senha" required />
+            <i class="uil uil-lock password"></i>
+            <i class="uil uil-eye-slash pw_hide"></i>
+          </div>
+
+          <div class="option_field">
+            <span class="checkbox">
+              <input type="checkbox" id="check" />
+              <label for="check">Lembre-me</label>
+            </span>
+            <a href="#" class="forgot_pw">Esqueceu a senha?</a>
+          </div>
+
+          <button class="button">Login</button>
+
+          <div class="login_signup">Não possui uma conta? <a href="#" id="signup">Cadastre-se</a></div>
+        </form>
+      </div>
+
+      <!-- Signup From -->
+      <div class="form signup_form">
+        <form action="#">
+          <h2>Cadastrar</h2>
+
+          <div class="input_box">
+            <input type="email" placeholder="Insira seu email" required />
+            <i class="uil uil-envelope-alt email"></i>
+          </div>
+          <div class="input_box">
+            <input type="password" placeholder="Crie sua senha" required />
+            <i class="uil uil-lock password"></i>
+            <i class="uil uil-eye-slash pw_hide"></i>
+          </div>
+          <div class="input_box">
+            <input type="password" placeholder="Confirme sua senha" required />
+            <i class="uil uil-lock password"></i>
+            <i class="uil uil-eye-slash pw_hide"></i>
+          </div>
+
+          <button class="button">Cadastra-se</button>
+
+          <div class="login_signup">Já possui uma conta? <a href="#" id="login">Login</a></div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======= Hero Section ======= -->
 <section id="hero-emocional" class="d-flex justify-content-center align-items-center">
-  <div class="container position-relative" data-aos="zoom-in" data-aos-delay="100">
-    <h1 class="text-center"> Você é forte o suficiente<br>para superar qualquer desafio.</h1>
-    <a href="sobrenos.html" class="btn-get-started">Leia mais</a>
-  </div>
-</section><!-- End Hero -->
-
-  <main id="main">
-
-    <section class="container-fluid py-5 HomeCareWrapper NewsHighlighted">
-      <div class="container px-0 px-sm-3">
-      <div class="row no-gutters"><div class="col-md-12 ">
-      <div class="content"><section class="container px-0 PageTitle">
-      <div class="container px-0">
-      <div class="row no-gutters"><div class="col-md-12 ">
-      <div class="content"><div class="Text text-center"><h1>Autocuidado</h1>
-      <div class="custom1">Você tem conhecimento sobre o conceito de autocuidado e de como implementá-ló?Nos tempos atuais, nos quais o estresse é uma presença constante em nosso dia a dia, é crucial estabelecer uma rotina de autocuidado. A seguir, vamos discutir os diversos tipos de autocuidado e oferecer 
-        algumas dicas sobre como incorporá-los em sua vida.</div></div>
-      </div>
-      </div>
-      </div>
-      </div>
-      </section>
-      <section class="container px-0 HomeCare">
-      <div class="container px-0">
-      <div class="row no-gutters"><div class="col-md-12 ">
-      <div class="content"><v-div class="MediaCustomListing ">
-
-      <div class="topic" onclick="hcSelect(this)">
-      <img class="image " src="./assets/imagens/alimentacao.png" width="80px" height="80px" loading="lazy" alt="01 - Use MIPs de forma responsável">
-      <div class="contents d-none">
-      <h1>Use MIPs de forma responsável</h1>
-      <p>Medicamentos Isentos de Prescrição são permitidos para tratar males como dor de cabeça, resfriado e má digestão. Siga as orientações da bula e peça ajuda ao farmacêutico, em caso de quaisquer dúvidas. Se os sintomas persistirem, busque ajuda médica.</p>
-      </div>
-      </div>
-
-      <div class="topic" onclick="hcSelect(this)">
-      <img class="image " src="./assets/imagens/ame-a-si-mesmo.png" width="80px" height="80px" loading="lazy" alt="02 - Informe-se sobre saúde">
-      <div class="contents d-none">
-      <h1>Informe-se sobre saúde</h1>
-      <p>Busque fontes confiáveis para ler e converse com médicos para tomar boas decisões e desenvolver noções de cuidados com a saúde física e mental.</p>
-      </div>
-      </div>
-
-      <div class="topic" onclick="hcSelect(this)">
-      <img class="image " src="./assets/imagens/consciencia.png" width="60px" height="60px" width="80px" height="100px" loading="lazy" alt="03 - Conheça a si mesmo">
-      <div class="contents d-none">
-      <h1>Conheça a si mesmo</h1>
-      <p>Faça autoexames com frequência para conhecer o seu corpo e dê atenção aos sinais do organismo. Caso perceba alterações, converse com seu médico.</p>
-      </div>
-      </div>
-
-      <div class="topic" onclick="hcSelect(this)">
-      <img class="image " src="./assets/imagens/cuidados-com-a-pele.png" width="60px" height="60px" loading="lazy" alt="04 - Pratique uma atividade física">
-      <div class="contents d-none">
-      <h1>Pratique uma atividade física</h1>
-      <p>Deixar o sedentarismo de lado é importante para cuidar do corpo e da mente, melhorar o funcionamento do organismo e prevenir doenças.</p>
-      </div>
-      </div>
-      
-      <div class="topic" onclick="hcSelect(this)">
-      <img class="image " src="./assets/imagens/cuidados-de-saude.png" width="60px" height="60px" loading="lazy" alt="05 - Tenha uma alimentação saudável">
-      <div class="contents d-none">
-      <h1>Tenha uma alimentação saudável</h1>
-      <p>Comidas naturais e ricas em nutrientes munem o corpo de vitaminas e elementos necessários para a manutenção da saúde e proporcionam bem-estar.</p>
-      </div>
-      </div>
-
-      <div class="topic" onclick="hcSelect(this)">
-      <img class="image " src="./assets/imagens/disturbio-do-sono.png" width="60px" height="60px" loading="lazy" alt="06 - Evite riscos para a saúde">
-      <div class="contents d-none">
-      <h1>Evite riscos para a saúde</h1>
-      <p>Cigarros, bebidas alcoólicas em excesso e alimentos industrializados devem ser evitados na rotina de quem deseja ter plenas condições físicas e mentais.</p>
-      </div>
-      </div>
-
-      <div class="topic" onclick="hcSelect(this)">
-      <img class="image " src="./assets/imagens/exercicio.png" width="60px" height="60px" loading="lazy" alt="07 - Tenha bons hábitos de higiene">
-      <div class="contents d-none">
-      <h1>Tenha bons hábitos de higiene</h1>
-      <p>Lavar as mãos frequentemente, fazer a higiene bucal após as refeições e trocar as escovas a cada dois meses devem fazer parte da rotina.</p>
-      </div>
-      </div>
-
-      <div class="topic" onclick="hcSelect(this)">
-      <img class="image " src="./assets/imagens/meditacao.png" width="60px" height="60px" loading="lazy" alt="07 - Tenha bons hábitos de higiene">
-      <div class="contents d-none">
-      <h1>Tenha bons hábitos de higiene</h1>
-      <p>Lavar as mãos frequentemente, fazer a higiene bucal após as refeições e trocar as escovas a cada dois meses devem fazer parte da rotina.</p>
-      </div>
-
-      </v-div>
-      <div class="Text"><script>
-      function hcAll() {
-        return [... document.querySelectorAll(".HomeCare .MediaCustomListing > .topic")];
-      }
-      
-      function hcSelect(el) {
-        if (!el) { return; }
-      
-        const allNode = hcAll();
-      
-        hcPos = allNode.findIndex(n => n === el);
-        allNode.forEach(i => i.classList.remove("active"));
-        el.classList.add("active");
-        hcTimeout();
-      
-        const gcNode = document.querySelector(".HomeCareContents .Text");
-        const cNode = el.querySelector(".contents");
-      
-        if (gcNode) {
-          gcNode.innerHTML = cNode.innerHTML;
+    <div class="container position-relative" data-aos="zoom-in" data-aos-delay="100">
+      <h1 class="text-center"> Você é forte o suficiente<br>para superar qualquer desafio.</h1>
+    </div>
+  </section><!-- End Hero -->
+  
+    <main id="main">
+  
+      <section class="container-fluid py-5 HomeCareWrapper NewsHighlighted">
+        <div class="container px-0 px-sm-3">
+        <div class="row no-gutters"><div class="col-md-12 ">
+        <div class="content"><section class="container px-0 PageTitle">
+        <div class="container px-0">
+        <div class="row no-gutters"><div class="col-md-12 ">
+        <div class="content"><div class="Text text-center"><h1>Autocuidado</h1>
+        <div class="custom1">Você tem conhecimento sobre o conceito de autocuidado e de como implementá-ló?Nos tempos atuais, nos quais o estresse é uma presença constante em nosso dia a dia, é crucial estabelecer uma rotina de autocuidado. A seguir, vamos discutir os diversos tipos de autocuidado e oferecer 
+          algumas dicas sobre como incorporá-los em sua vida.</div></div>
+        </div>
+        </div>
+        </div>
+        </div>
+        </section>
+        <section class="container px-0 HomeCare">
+        <div class="container px-0">
+        <div class="row no-gutters"><div class="col-md-12 ">
+        <div class="content"><v-div class="MediaCustomListing ">
+  
+        <div class="topic" onclick="hcSelect(this)">
+        <img class="image " src="./assets/imagens/alimentacao.png" width="80px" height="80px" loading="lazy" alt="01 - Use MIPs de forma responsável">
+        <div class="contents d-none">
+        <h1>Use MIPs de forma responsável</h1>
+        <p>Medicamentos Isentos de Prescrição são permitidos para tratar males como dor de cabeça, resfriado e má digestão. Siga as orientações da bula e peça ajuda ao farmacêutico, em caso de quaisquer dúvidas. Se os sintomas persistirem, busque ajuda médica.</p>
+        </div>
+        </div>
+  
+        <div class="topic" onclick="hcSelect(this)">
+        <img class="image " src="./assets/imagens/ame-a-si-mesmo.png" width="80px" height="80px" loading="lazy" alt="02 - Informe-se sobre saúde">
+        <div class="contents d-none">
+        <h1>Informe-se sobre saúde</h1>
+        <p>Busque fontes confiáveis para ler e converse com médicos para tomar boas decisões e desenvolver noções de cuidados com a saúde física e mental.</p>
+        </div>
+        </div>
+  
+        <div class="topic" onclick="hcSelect(this)">
+        <img class="image " src="./assets/imagens/consciencia.png" width="60px" height="60px" width="80px" height="100px" loading="lazy" alt="03 - Conheça a si mesmo">
+        <div class="contents d-none">
+        <h1>Conheça a si mesmo</h1>
+        <p>Faça autoexames com frequência para conhecer o seu corpo e dê atenção aos sinais do organismo. Caso perceba alterações, converse com seu médico.</p>
+        </div>
+        </div>
+  
+        <div class="topic" onclick="hcSelect(this)">
+        <img class="image " src="./assets/imagens/cuidados-com-a-pele.png" width="60px" height="60px" loading="lazy" alt="04 - Pratique uma atividade física">
+        <div class="contents d-none">
+        <h1>Pratique uma atividade física</h1>
+        <p>Deixar o sedentarismo de lado é importante para cuidar do corpo e da mente, melhorar o funcionamento do organismo e prevenir doenças.</p>
+        </div>
+        </div>
+        
+        <div class="topic" onclick="hcSelect(this)">
+        <img class="image " src="./assets/imagens/cuidados-de-saude.png" width="60px" height="60px" loading="lazy" alt="05 - Tenha uma alimentação saudável">
+        <div class="contents d-none">
+        <h1>Tenha uma alimentação saudável</h1>
+        <p>Comidas naturais e ricas em nutrientes munem o corpo de vitaminas e elementos necessários para a manutenção da saúde e proporcionam bem-estar.</p>
+        </div>
+        </div>
+  
+        <div class="topic" onclick="hcSelect(this)">
+        <img class="image " src="./assets/imagens/disturbio-do-sono.png" width="60px" height="60px" loading="lazy" alt="06 - Evite riscos para a saúde">
+        <div class="contents d-none">
+        <h1>Evite riscos para a saúde</h1>
+        <p>Cigarros, bebidas alcoólicas em excesso e alimentos industrializados devem ser evitados na rotina de quem deseja ter plenas condições físicas e mentais.</p>
+        </div>
+        </div>
+  
+        <div class="topic" onclick="hcSelect(this)">
+        <img class="image " src="./assets/imagens/exercicio.png" width="60px" height="60px" loading="lazy" alt="07 - Tenha bons hábitos de higiene">
+        <div class="contents d-none">
+        <h1>Tenha bons hábitos de higiene</h1>
+        <p>Lavar as mãos frequentemente, fazer a higiene bucal após as refeições e trocar as escovas a cada dois meses devem fazer parte da rotina.</p>
+        </div>
+        </div>
+  
+        <div class="topic" onclick="hcSelect(this)">
+        <img class="image " src="./assets/imagens/meditacao.png" width="60px" height="60px" loading="lazy" alt="07 - Tenha bons hábitos de higiene">
+        <div class="contents d-none">
+        <h1>Tenha bons hábitos de higiene</h1>
+        <p>Lavar as mãos frequentemente, fazer a higiene bucal após as refeições e trocar as escovas a cada dois meses devem fazer parte da rotina.</p>
+        </div>
+  
+        </v-div>
+        <div class="Text"><script>
+        function hcAll() {
+          return [... document.querySelectorAll(".HomeCare .MediaCustomListing > .topic")];
         }
-      }
-      
-      let hcTimeoutHandler;
-      let hcPos = -1;
-      
-      function hcTimeout() {
-        clearTimeout(hcTimeoutHandler);
-        hcTimeoutHandler = setTimeout(hcNext, 5000);
-      }
-      
-      function hcNext() {
-        hcPos++;
-        const allNode = hcAll();
-        hcSelect(allNode[hcPos % allNode.length]);
-      }
-      
-      window.addEventListener("DOMContentLoaded", function() {
-        hcNext();
-      });
-      </script></div>
-      </div>
-      </div>
-      </div>
-      </div>
-      </section>
-      <section class="container px-0 HomeCareContents">
-      <div class="container px-0">
-      <div class="row no-gutters"><div class="col-md-12 ">
-      <div class="content"><div class="Text"></div>
-      </div>
-      </div>
-      </div>
-      </div>
-      </section>
-      </div>
-      </div>
-      </div>
-      </div>
-      </section>
-
-  </main><!-- End #main -->
+        
+        function hcSelect(el) {
+          if (!el) { return; }
+        
+          const allNode = hcAll();
+        
+          hcPos = allNode.findIndex(n => n === el);
+          allNode.forEach(i => i.classList.remove("active"));
+          el.classList.add("active");
+          hcTimeout();
+        
+          const gcNode = document.querySelector(".HomeCareContents .Text");
+          const cNode = el.querySelector(".contents");
+        
+          if (gcNode) {
+            gcNode.innerHTML = cNode.innerHTML;
+          }
+        }
+        
+        let hcTimeoutHandler;
+        let hcPos = -1;
+        
+        function hcTimeout() {
+          clearTimeout(hcTimeoutHandler);
+          hcTimeoutHandler = setTimeout(hcNext, 5000);
+        }
+        
+        function hcNext() {
+          hcPos++;
+          const allNode = hcAll();
+          hcSelect(allNode[hcPos % allNode.length]);
+        }
+        
+        window.addEventListener("DOMContentLoaded", function() {
+          hcNext();
+        });
+        </script></div>
+        </div>
+        </div>
+        </div>
+        </div>
+        </section>
+        <section class="container px-0 HomeCareContents">
+        <div class="container px-0">
+        <div class="row no-gutters"><div class="col-md-12 ">
+        <div class="content"><div class="Text"></div>
+        </div>
+        </div>
+        </div>
+        </div>
+        </section>
+        </div>
+        </div>
+        </div>
+        </div>
+        </section>
+  
+    </main><!-- End #main -->
 
   <!-- ======= Footer ======= -->
   <footer id="footer">
@@ -251,70 +326,49 @@
         <div class="row">
 
           <div class="col-lg-3 col-md-6 footer-contact">
-            <h3>Mentor</h3>
-            <p>
-              A108 Adam Street <br>
-              New York, NY 535022<br>
-              United States <br><br>
-              <strong>Phone:</strong> +1 5589 55488 55<br>
-              <strong>Email:</strong> info@example.com<br>
+            <h3>Fale conosoco</h3>
+            <p class="fale_conosco">
+              <strong class="selecionar"><img class="icone" src="./assets/imagens/localizacao.png" width="25px" height="25px" alt="">R. Tito, 54, Vila Romana, São Paulo </strong><br>
+              <strong class="selecionar"> <img src="./assets/imagens/telefone.png" width="20px" height="20px" alt="Telefone">Telefone: (11)1234-5678</strong><br>
+              <strong class="selecionar"> <img src="./assets/imagens/email.png" width="20px" height="20px" alt="email">Email: emp.negocios@empresa.com</strong><br>
             </p>
           </div>
 
           <div class="col-lg-2 col-md-6 footer-links">
-            <h4>Useful Links</h4>
+            <h4>Siga-nos</h4>
             <ul>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Home</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">About us</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Services</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Terms of service</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Privacy policy</a></li>
+              <a href="#" class="instagram depois"><i class="bx bxl-instagram"></i></a>
+              <a href="#" class="linkedin depois"><i class="bx bxl-linkedin"></i></a>
             </ul>
           </div>
 
           <div class="col-lg-3 col-md-6 footer-links">
-            <h4>Our Services</h4>
+            <h4>Mapa do site</h4>
             <ul>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Web Design</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Web Development</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Product Management</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Marketing</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Graphic Design</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Termos de Serviço</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Política de privacidade</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Contato</a></li>
             </ul>
-          </div>
-
-          <div class="col-lg-4 col-md-6 footer-newsletter">
-            <h4>Join Our Newsletter</h4>
-            <p>Tamen quem nulla quae legam multos aute sint culpa legam noster magna</p>
-            <form action="" method="post">
-              <input type="email" name="email"><input type="submit" value="Subscribe">
-            </form>
           </div>
 
         </div>
       </div>
     </div>
 
-    <div class="container d-md-flex py-4">
+    <div class="container text-center mx-auto py-4">
 
       <div class="me-md-auto text-center text-md-start">
-        <div class="copyright">
-          &copy; Copyright <strong><span>Mentor</span></strong>. All Rights Reserved
+        <div class="copyright mx-auto">
+          &copy; Copyright <strong><span>Append</span></strong>. Todos os direitos reservados
         </div>
-        <div class="credits">
+        <div class="credits mx-auto">
           <!-- All the links in the footer should remain intact. -->
           <!-- You can delete the links only if you purchased the pro version. -->
           <!-- Licensing information: https://bootstrapmade.com/license/ -->
           <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/mentor-free-education-bootstrap-theme/ -->
-          Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+          <!-- Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a> -->
+          <p class="text-center mx-auto">Desenvolvido por EMP</p>
         </div>
-      </div>
-      <div class="social-links text-center text-md-right pt-3 pt-md-0">
-        <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
-        <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
-        <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
-        <a href="#" class="google-plus"><i class="bx bxl-skype"></i></a>
-        <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
       </div>
     </div>
   </footer><!-- End Footer -->
@@ -331,6 +385,10 @@
 
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
+  <script src="assets/js/script-login.js"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-element-bundle.min.js"></script>
+
 
 </body>
 

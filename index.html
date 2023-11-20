@@ -24,7 +24,12 @@
   <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
   <link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet">
   <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
-  <!-- <link rel="stylesheet" href="./assets/css/card.scss"> -->
+
+   <!-- Login -->
+   <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css" />
+   <link rel="stylesheet" href="./assets/css/login.css">
+   
+   <!-- <link rel="stylesheet" href="./assets/css/card.scss"> -->
 
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -77,35 +82,77 @@
               <li><a href="#">Artigos</a></li>
             </ul>
           </li>
-          <li><a href="pricing.html">Emocional</a></li>
+          <li><a href="./emocional.html">Emocional</a></li>
           <li><a href="pricing.html">Contato</a></li>
 
-          <!-- <li class="dropdown"><a href="#"><span>Networking</span> <i class="bi bi-chevron-down"></i></a>
-            <ul>
-              <li><a href="#">Artigos</a></li>
-              <li class="dropdown"><a href="#"><span>Deep Drop Down</span> <i class="bi bi-chevron-right"></i></a>
-                <ul>
-                  <li><a href="#">Deep Drop Down 1</a></li>
-                  <li><a href="#">Deep Drop Down 2</a></li>
-                  <li><a href="#">Deep Drop Down 3</a></li>
-                  <li><a href="#">Deep Drop Down 4</a></li>
-                  <li><a href="#">Deep Drop Down 5</a></li>
-                </ul>
-              </li>
-              <li><a href="#">Drop Down 2</a></li>
-              <li><a href="#">Drop Down 3</a></li>
-              <li><a href="#">Drop Down 4</a></li>
-            </ul>
-          </li> -->
-          <!-- <li><a href="contact.html">Contact</a></li> -->
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav><!-- .navbar -->
 
-      <a href="courses.html" class="get-started-btn">Login</a>
+      <button class="get-started-btn button" id="form-open">Login</button>
 
     </div>
   </header><!-- End Header -->
+
+  <section class="home">
+    <div class="form_container">
+      <i class="uil uil-times form_close"></i>
+      <!-- Login From -->
+      <div class="form login_form">
+        <form action="#">
+          <h2>Login</h2>
+
+          <div class="input_box">
+            <input type="email" placeholder="Insira seu email" required />
+            <i class="uil uil-envelope-alt email"></i>
+          </div>
+          <div class="input_box">
+            <input type="password" placeholder="Insira sua senha" required />
+            <i class="uil uil-lock password"></i>
+            <i class="uil uil-eye-slash pw_hide"></i>
+          </div>
+
+          <div class="option_field">
+            <span class="checkbox">
+              <input type="checkbox" id="check" />
+              <label for="check">Lembre-me</label>
+            </span>
+            <a href="#" class="forgot_pw">Esqueceu a senha?</a>
+          </div>
+
+          <button class="button">Login</button>
+
+          <div class="login_signup">Não possui uma conta? <a href="#" id="signup">Cadastre-se</a></div>
+        </form>
+      </div>
+
+      <!-- Signup From -->
+      <div class="form signup_form">
+        <form action="#">
+          <h2>Cadastrar</h2>
+
+          <div class="input_box">
+            <input type="email" placeholder="Insira seu email" required />
+            <i class="uil uil-envelope-alt email"></i>
+          </div>
+          <div class="input_box">
+            <input type="password" placeholder="Crie sua senha" required />
+            <i class="uil uil-lock password"></i>
+            <i class="uil uil-eye-slash pw_hide"></i>
+          </div>
+          <div class="input_box">
+            <input type="password" placeholder="Confirme sua senha" required />
+            <i class="uil uil-lock password"></i>
+            <i class="uil uil-eye-slash pw_hide"></i>
+          </div>
+
+          <button class="button">Cadastra-se</button>
+
+          <div class="login_signup">Já possui uma conta? <a href="#" id="login">Login</a></div>
+        </form>
+      </div>
+    </div>
+  </section>
 
   <!-- ======= Hero Section ======= -->
   <section id="hero" class="d-flex justify-content-center align-items-center">
@@ -600,6 +647,7 @@
 
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
+  <script src="assets/js/script-login.js"></script>
 
 </body>
 
