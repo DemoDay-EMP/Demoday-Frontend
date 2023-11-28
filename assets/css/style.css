@@ -311,7 +311,7 @@ h6 {
 * Mobile Navigation 
 */
 .mobile-nav-toggle {
-  color: #37423b;
+  color: var(--amarelo);
   font-size: 28px;
   cursor: pointer;
   display: none;
@@ -1911,5 +1911,97 @@ small{
   padding: 0;
 }
 
-/* Artigo */
+/*--------------------------------------------------------------
+                      PÁGINA SOBRE NÓS
+                      PÁGINA SOBRE NÓS
+--------------------------------------------------------------*/
 
+#hero-sobre-nos{
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  height: 80vh;
+  background: linear-gradient(rgba(194, 194, 194, 0.707), rgba(255, 255, 255, 0.107)), url("../imagens/wallpaper-nos.jpg") top center;
+  background-size: cover;
+  position: relative;
+}
+
+#hero-sobre-nos h1 {
+  margin: 0;
+  font-size: 32px;
+  font-weight: 700;
+  line-height: 56px;
+  color: #ffffff;
+  font-family: "Poppins", sans-serif;
+}
+
+.sobre-txt{
+  font-size: 20px;
+}
+
+#hero-sobre-nos img{
+  /* margin-top: 20px; */
+  padding-top: 50px;
+  width: 30vw;
+}
+
+.PageTitle:first-of-type {
+  padding: 10px 0;
+}
+
+
+.HomeCareContents:last-of-type {
+  padding: 20px 0;
+}
+
+/* Equipe carrossel */
+
+.swiper-slide {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin: auto 20px;
+}
+
+.swiper-slide img {
+  display: block;
+  width: 50%;
+  height: 50%;
+  object-fit: cover;
+}
+
+
+element.style {
+}
+.swiper-horizontal>.swiper-pagination-bullets, .swiper-pagination-bullets.swiper-pagination-horizontal, .swiper-pagination-custom, .swiper-pagination-fraction {
+  bottom: -2px;
+  left: 0;
+  width: 100%;
+}
+
+.emp{
+  background-image: url("../imagens/wallpaper.jpeg");
+  background-repeat: no-repeat;
+  height: 100vh;
+  background-size: cover;
+}
+
+.descricao-emp{
+  background-color: var(--beterraba);
+  width: 50vw;
+  height: 45vh;
+  color: white;
+  line-height: 2rem;
+  padding: 20px;
+
+  border-radius: 20px;
+}
+
+.amarelo{
+  color: var(--amarelo);
+}
+
+.cor-sobrenos{
+  background-color: #d9c0db;
+}
