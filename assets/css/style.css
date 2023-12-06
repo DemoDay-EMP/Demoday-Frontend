@@ -2035,3 +2035,63 @@ element.style {
 .services-nos {
   background-color: var(--amarelo);
 }
+
+
+/*--------------------------------------------------------------
+                      PÁGINA DOE
+                      PÁGINA DOE
+--------------------------------------------------------------*/
+#hero-doe {
+  width: 100%;
+  height: 100vh;
+  background: linear-gradient(rgba(56, 67, 60, 0.263), rgba(56, 67, 60, 0.263)), url("../imagens/indigenas.png") top center;
+  /* background: url("../imagens/indigenas.png") top center; */
+  background-size: cover;
+  position: relative;
+}
+
+.titulo-doe {
+  margin-top: 50vh;
+  font-size: 48px;
+  font-weight: 700;
+  line-height: 56px;
+  color: #fff;
+  font-family: "Poppins", sans-serif;
+}
+
+.laranja{
+  color: var(--laranja);
+}
+
+.doacao{
+  color: black;
+  margin-top: 3rem;
+  font-size: 3rem;
+}
+
+.doe{
+  color: black;
+}
+
+.aplicar{
+  color: black;
+}
+
+.config{
+  margin: auto;
+  padding-bottom: 2rem;
+}
+
+@media screen and (max-width: 280px) {
+  .config {
+    font-size: 2rem;
+  }
+}
+
+.link-doe{
+  text-decoration: none;
+  color: var(--beterraba);
+}
+.link-doe:hover{
+  color: var(--laranja);
+}
