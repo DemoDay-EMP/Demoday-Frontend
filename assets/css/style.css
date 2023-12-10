@@ -2122,6 +2122,15 @@ element.style {
                       PÁGINA NETWORKING
 --------------------------------------------------------------*/
 
+#hero-networking{
+  width: 100%;
+  height: 80vh;
+  background: linear-gradient(rgba(255, 255, 255, 0.289), rgba(56, 67, 60, 0.263)), url("../imagens/networking-wallpaper.jpg") top center;
+  background-size: cover;
+  position: relative;
+
+}
+
 /*--------------------------------------------------------------
 # Our Values
 --------------------------------------------------------------*/
@@ -2152,7 +2161,7 @@ element.style {
 }
 
 .our-values .card-title a {
-  color: #150517;
+  color: var(--amarelo);
 }
 
 .our-values .card-text {
@@ -2186,4 +2195,16 @@ element.style {
   .card-text{
     font-size: 12px;
   }
+}
+
+.pt-5, .py-5 {
+  padding-bottom: 2px!important;
+}
+
+.mb-5, .my-5 {
+  margin-bottom: 1px !important;
+}
+
+.pt-5, .py-5 {
+  padding-top: 2px!important;
 }
