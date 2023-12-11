@@ -17,6 +17,50 @@
   --laranja: #eb7729;
 }
 
+/*Icones redes*/
+.social-links{
+  display: flex;
+  direction: row;
+  
+}
+
+/*Página Inicial *Texto sobre a EMP*/
+.container-fluid{
+  justify-content: center;
+  text-align: justify;
+  display: flex;
+
+}
+
+
+/*Plano*/
+
+.box{
+  position: fixed;
+  display: block;
+  flex-direction: column;
+  justify-content:center;
+  height: 530px;
+}
+
+.Icon_X{
+  display:block;
+  flex-direction: column;
+  text-align:left;
+  margin-bottom: 10px;
+  justify-content: center;
+}
+
+.box dois{
+  position: fixed;
+  display: block;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 530px;
+}
+
+
+
 /*--------------------------------------------------------------
 # General
 --------------------------------------------------------------*/
@@ -1389,6 +1433,29 @@ section {
   color: var(--amarelo);
 }
 
+/*Funcionalidades*/
+.pt-5, .py-5 {
+  padding-bottom: 2px!important;
+}
+
+.mb-5, .my-5 {
+  margin-bottom: 1px !important;
+}
+
+.pt-5, .py-5 {
+  padding-top: 2px!important;
+}
+.h2-sm {
+  font-size: 1.5rem; /* Ajuste o tamanho do texto */
+}
+
+.custom-section {
+  padding-top: 0;
+  padding-bottom: 0;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
 /* Vantagens e beneficios */
 .cor {
   padding: 30% 0;
@@ -2054,20 +2121,6 @@ element.style {
 
 .services-nos {
   background-color: var(--amarelo);
-}
-
-
-@media screen and (max-width: 700px) {
-  .sobre-letra{
-    font-size: 10px;
-  }
-
-  .swiper-slide img {
-    width: 80%;
-    height: 80%;
-    object-fit: cover;
-  }
-  
 }
 
 

@@ -59,17 +59,12 @@
   <!-- ======= Header ======= -->
   
   <header id="header" class="fixed-top">
-    <div class="social-links text-center text-md-right pt-3 pt-md-0">
-      <a href="https://www.facebook.com/people/EMP-Oficial/61554028190664/" class="facebook depois"><i class="bx bxl-facebook"></i></a>
-      <a href="https://www.instagram.com/emp_oficialsp/?hl=pt" class="instagram depois"><i class="bx bxl-instagram"></i></a>
-      <a href="http://www.linkedin.com/in/emp-oficial" class="linkedin depois"><i class="bx bxl-linkedin"></i></a>
-    </div>
     <div class="container d-flex align-items-center">
 
       <h1 class="logo me-auto"><a href="index.html"> <img src="./assets/imagens/logo_emp.png" alt="Logo EMP"></a></h1>
       <!-- Uncomment below if you prefer to use an image logo -->
       <!-- <a href="index.html" class="logo me-auto"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
-    
+
       <nav id="navbar" class="navbar order-last order-lg-0">
         <ul>
           <li><a href="index.html">Home</a></li>
@@ -123,26 +118,26 @@
 
       <!-- Signup From -->
       <div class="form signup_form">
-        <form id="signupForm">
+        <form action="#">
           <h2>Cadastrar</h2>
-  
+
           <div class="input_box">
-              <input type="email" id="email" placeholder="Insira seu email" required />
-              <i class="uil uil-envelope-alt email"></i>
+            <input type="email" placeholder="Insira seu email" required />
+            <i class="uil uil-envelope-alt email"></i>
           </div>
           <div class="input_box">
-              <input type="password" id="password" placeholder="Crie sua senha" required />
-              <i class="uil uil-lock password"></i>
-              <i class="uil uil-eye-slash pw_hide"></i>
+            <input type="password" placeholder="Crie sua senha" required />
+            <i class="uil uil-lock password"></i>
+            <i class="uil uil-eye-slash pw_hide"></i>
           </div>
           <div class="input_box">
-              <input type="password" id="confirmPassword" placeholder="Confirme sua senha" required />
-              <i class="uil uil-lock password"></i>
-              <i class="uil uil-eye-slash pw_hide"></i>
+            <input type="password" placeholder="Confirme sua senha" required />
+            <i class="uil uil-lock password"></i>
+            <i class="uil uil-eye-slash pw_hide"></i>
           </div>
-  
-          <button type="button" class="button" onclick="redirecionarLogin()">Continuar</button>
-  
+
+          <button class="button">Cadastra-se</button>
+
           <div class="login_signup">Já possui uma conta? <a href="#" id="login">Login</a></div>
         </form>
       </div>
@@ -173,18 +168,14 @@
            <div class="col-md-6 alinhar fundo">
             <div class="col-lg-5 col-md-6 col-sm-12 wow fadeIn" data-wow-delay=".3s">
               <div class="h-100">
-                <img src="./assets/imagens/logo_emp.png" class="img-fluid w-75 rounded mx-auto" alt="" style="margin: 8%;">
+                <img src="./assets/imagens/logo-branca-sem-fundo.png" class="img-fluid w-75 rounded mx-auto" alt="" style="margin: 8%;">
                 <!-- <div class="position-absolute w-75" style="top: 25%; left: 25%;"> -->
                     <!-- <img src="./assets/imagens/grupo.jpeg" class="img-fluid w-100 rounded" alt=""> -->
                 </div>
             </div>
               <div class="about_taital_main mx-auto">
                  <p class="about_text mx-auto">
-                    A <span class="amarelo">EMP</span> é mais que uma simples ideia, é o nosso negocio que ganhou vida a partir de mulheres da nossa realidade, que conseguiram ultrapassar
-                    uma barreira sozinhas, e foi pensando nelas e nas dores delas, que criamos o <span class="amarelo">Emp</span>oderando e Empreendendo (<span class="amarelo">EMP</span>). Sendo o nosso objetivo auxiliar e 
-                    facilitar diversas etapas da vida de uma mulher microempreendedora, criando assim automação nas areas de financias, mas também
-                    ajuda mental para nossas mulheres. Porque aqui, queremos ajudar e acolher, por isso enxergamos mulheres da periferia, que são diversas
-                    vezes esquecidas, e olhando ainda mais macro, enxergamos mulheres indigenas e nas lutas delas.
+                  A <span class="amarelo">EMP</span> não é apenas uma ideia; é o nosso negócio que surgiu a partir de nossas experiências pessoais, evidenciando necessidades compartilhadas por outras mulheres. Observamos aquelas que conseguiram ultrapassar barreiras sozinhas, e foi pensando nelas que criamos a EMP (<span class= "amarelo">Emp</span>oderando e <span class= "amarelo">Emp</span>reendendo). Nosso objetivo é auxiliar e proporcionar visibilidade, contribuindo para o empoderamento e sucesso de mulheres empreendedoras.
                   </p>
               </div>
            </div>
@@ -207,7 +198,8 @@
         <div class="icon-box text-center">
           <div class="icon"><img src="./assets/imagens/missao.png" width="50px" height="50px" alt=""></div>
           <h4 class="title">Missão</h4>
-          <p class="description">Fornecer ferramentas de gestão financeira e uma rede de apoio para microempreendedoras,promovendo o crescimento do seu negócio.</p>
+          <p class="description">
+            Fornecer ferramentas de gestão financeira e uma rede de apoio para microempreendedoras, promovendo o crescimento de seus negócios.</p>
         </div>
       </div>
 
@@ -215,7 +207,7 @@
         <div class="icon-box text-center">
           <div class="icon"><img src="./assets/imagens/visao.png" width="50px" height="50px" alt=""></div>
           <h4 class="title">Visão</h4>
-          <p class="description">Atingir o maior número de microempreendedoras, revolucionando a forma como gerenciam seus negócios, moldando um futuro mais igualitário e próspero.</p>
+          <p class="description">Alcançar o maior número possível de microempreendedoras, revolucionando a maneira como gerenciam seus negócios, moldando um futuro mais igualitário e próspero.</p>
         </div>
       </div>
 
@@ -234,44 +226,71 @@
 
     <!-- Equipe carrossel -->
     <!-- Swiper -->
-    <div class="text-center mx-auto pb-5 wow fadeIn equipe-margem" data-wow-delay=".3s" style="max-width: 600px;">
-      <h2> Equipe </h2>
+    <div class="text-center mx-auto pb-5 wow fadeIn equipe-margem" data-wow-delay=".3s" style="max-width: 600px;"><br><br>
+      <h2>Desenvolvedores responsáveis pela  EMP </h2>
     </div>
     <div class="swiper mySwiper">
       <div class="swiper-wrapper">
 
         <div class="swiper-slide">
           <img src="./assets/imagens/Julia.png" height="400px" alt="">
-          <p class="sobre-letra">Julia Silva <br>Full Stack e Product Owner</p>
+          <p>Julia Araujo <br>Product Owner e Full-Stack</p>
         </div>
 
         <div class="swiper-slide">
           <img src="./assets/imagens/Nath.jpeg" height="400px" alt="">
-          <p class="sobre-letra">Nathalia Marins <br>Front End</p>
+          <p>Nathalia Marins <br>Front-End</p>
         </div>
 
         <div class="swiper-slide">
           <img src="./assets/imagens/Deivid.png" height="400px" alt="">
-          <p class="sobre-letra">Deivid Moises <br>Full Stack Designer e Scrum Master</p>
+          <p>Deivid Moises <br>Scrum Master e Full-Stack Designer</p>
         </div>
 
         <div class="swiper-slide">
           <img src="./assets/imagens/Gui.png" height="400px" alt="">
-          <p class="sobre-letra">Guilherme Alefe <br>Back-End e Financeiro</p>
+          <p>Guilherme Alefe <br>Financeiro e Back-End</p>
         </div>
 
         <div class="swiper-slide">
           <img src="./assets/imagens/Gleyce.jpeg" height="400px" alt="">
-          <p class="sobre-letra">Gleyce Pereira <br>Full Stack</p>
+          <p>Gleyce Pereira <br>Full-Stack</p>
         </div>
 
         <div class="swiper-slide">
           <img src="./assets/imagens/Gaby.png" height="400px" alt="">
-          <p class="sobre-letra">Gabriely Santos <br>Back-End</p>
+          <p>Gabriely Santos <br>Back-End</p>
         </div>
       </div>
       <div class="swiper-pagination"></div>
     </div>
+
+
+    <!-- Vonlutários-->
+
+
+      <!-- Swiper -->
+      <div class="text-center mx-auto pb-5 wow fadeIn equipe-margem" data-wow-delay=".3s" style="max-width: 600px;">
+        <h2> Voluntários que auxiliaram no desenvolvimento </h2>
+      </div>
+      <div class="swiper mySwiper">
+        <div class="swiper-wrapper">
+  
+          <div class="swiper-slide">
+            <img src="./assets/imagens/Paulo_Henrique-removebg-preview.png" height="400px" alt="">
+            <p>Paulo H. Nunes<br>Back-End</p>
+          </div>
+  
+          <div class="swiper-slide">
+            <img src="./assets/imagens/Rafael.vol-removebg-preview.png" height="400px" alt="">
+            <p>Rafael Biasiol<br>Front-End</p>
+          </div>
+  
+          <div class="swiper-slide">
+            <img src="./assets/imagens/Thiago_Lucena.png" height="400px" alt="">
+            <p>Thiago Lucena <br>Back-End</p>
+          </div>
+
      
      <!-- ======= Counts Section ======= -->
   <section id="counts" class="counts section-bg cor-sobrenos" style="background-image: url('./assets/imagens/fundo.png'); background-repeat: no-repeat  ;">
@@ -302,10 +321,6 @@
 
     </div>
   </section><!-- End Counts Section -->
-
-    <!-- <a class="whatsapp" target=" _blank" href="https://api.whatsapp.com/send?phone=5511983928638&text=Ol%C3%A1,%20gostaria%20de%20saber%20mais%20informa%C3%A7%C3%B5es%20sobre%20a%20EMP.">
-      <button type="buttom"><img src="./assets/imagens/whatsapp-logo-png.png" width="50px" height="50px" alt=""> </button>
-    </a> -->
 
   </main><!-- End #main -->
 
@@ -365,8 +380,6 @@
     </div>
   </footer><!-- End Footer -->
 
-  <div id="preloader"></div>
-  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
   <!-- Vendor JS Files -->
   <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
@@ -413,20 +426,7 @@
   )();
 </script>
 
-  <!-- Initialize Swiper -->
-  <script>
-    var swiper = new Swiper(".mySwiper", {
-      slidesPerView: 3,
-      spaceBetween: 30,
-      autoplay: {
-        delay: 3000, // Tempo em milissegundos entre os slides
-      },
-      pagination: {
-        el: ".swiper-pagination",
-        clickable: true,
-      },
-    });
-  </script>
+
 
 <script>
   function redirecionarLogin() {
@@ -450,6 +450,22 @@
         }
   }
 </script>
+
+
+  <!-- Initialize Swiper -->
+  <script>
+    var swiper = new Swiper(".mySwiper", {
+      slidesPerView: 3,
+      spaceBetween: 30,
+      autoplay: {
+        delay: 3000, // Tempo em milissegundos entre os slides
+      },
+      pagination: {
+        el: ".swiper-pagination",
+        clickable: true,
+      },
+    });
+  </script>
 
 </body>
 

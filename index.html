@@ -58,11 +58,6 @@
  <!-- ======= Header ======= -->
   
  <header id="header" class="fixed-top">
-  <div class="social-links text-center text-md-right pt-3 pt-md-0">
-    <a href="https://www.facebook.com/people/EMP-Oficial/61554028190664/" class="facebook depois"><i class="bx bxl-facebook"></i></a>
-    <a href="https://www.instagram.com/emp_oficialsp/?hl=pt" class="instagram depois"><i class="bx bxl-instagram"></i></a>
-    <a href="http://www.linkedin.com/in/emp-oficial" class="linkedin depois"><i class="bx bxl-linkedin"></i></a>
-  </div>
   <div class="container d-flex align-items-center">
 
     <h1 class="logo me-auto"><a href="index.html"> <img src="./assets/imagens/logo_emp.png" alt="Logo EMP"></a></h1>
@@ -122,28 +117,28 @@
 
     <!-- Signup From -->
     <div class="form signup_form">
-      <form id="signupForm">
+      <form action="#">
         <h2>Cadastrar</h2>
 
         <div class="input_box">
-            <input type="email" id="email" placeholder="Insira seu email" required />
-            <i class="uil uil-envelope-alt email"></i>
+          <input type="email" placeholder="Insira seu email" required />
+          <i class="uil uil-envelope-alt email"></i>
         </div>
         <div class="input_box">
-            <input type="password" id="password" placeholder="Crie sua senha" required />
-            <i class="uil uil-lock password"></i>
-            <i class="uil uil-eye-slash pw_hide"></i>
+          <input type="password" placeholder="Crie sua senha" required />
+          <i class="uil uil-lock password"></i>
+          <i class="uil uil-eye-slash pw_hide"></i>
         </div>
         <div class="input_box">
-            <input type="password" id="confirmPassword" placeholder="Confirme sua senha" required />
-            <i class="uil uil-lock password"></i>
-            <i class="uil uil-eye-slash pw_hide"></i>
+          <input type="password" placeholder="Confirme sua senha" required />
+          <i class="uil uil-lock password"></i>
+          <i class="uil uil-eye-slash pw_hide"></i>
         </div>
 
         <button type="button" class="button" onclick="redirecionarLogin()">Continuar</button>
 
         <div class="login_signup">Já possui uma conta? <a href="#" id="login">Login</a></div>
-    </form>
+      </form>
     </div>
   </div>
 </section>
@@ -192,11 +187,11 @@
   <main id="main">
 
     <!-- About Start -->
-    <div class="container-fluid py-5 my-5">
+    <div class="container-fluid py-5 my-5 custom-section">
       <div class="container py-5">
           <div class="row g-5">
               <div class="col-lg-5 col-md-6 col-sm-12 wow fadeIn" data-wow-delay=".3s">
-                  <div class="h-100 position-relative">
+                  <div class="h-100 position-relative d-flex align-items-center">
                       <img src="./assets/imagens/mulheres_.jpg" class="img-fluid w-75 rounded" alt="" style="margin-bottom: 25%;">
                       <div class="position-absolute w-75" style="top: 25%; left: 25%;">
                           <img src="./assets/imagens/mulher_uniao.jpg" class="img-fluid w-100 rounded" alt="">
@@ -204,11 +199,8 @@
                   </div>
               </div>
               <div class="col-lg-7 col-md-6 col-sm-12 wow fadeIn" data-wow-delay=".5s">
-                  <h2 class="mb-4">Objetivo</h2>
-                  <p>Auxiliamos e damos visibilidade às mulheres microempreendedoras. Não nos limitamos
-                    apenas ao aspecto Técnico; identificamos também as necessidades emocionais e estamos
-                    comprometidos em ajudá-las nessa difícil jornada. Além disso, realizaremos doações para
-                    mulheres indígenas e periféricas, auxiliando-as na construção de suas empresas.
+                  <h2 class="mb-4"><br><br>Sobre a EMP</h2>
+                  <p>A EMP surge para empoderar e empreender mulheres para o sucesso. Revolucionando e impulsionando a forma como gerenciam seus negócios. Nossa plataforma tem um grande foco na automatização de processo de gerenciamento financeiro, mas não paramos por aqui. Entendemos que era necessário ir além, então essas mulheres ao longo de sua jornada na EMP contam com uma rede de apoio.
                   </p>
               </div>
           </div>
@@ -217,36 +209,12 @@
   <!-- About End -->
 
 
-
-    <!-- ======= About Section ======= -->
-    <!-- <section id="about" class="about">
-      <div class="container" data-aos="fade-up">
-
-        <div class="row">
-          <div class="col-lg-6 order-1 order-lg-2" data-aos="fade-left" data-aos-delay="100">
-            <img src="assets/img/about.jpg" class="img-fluid" alt="">
-          </div>
-          <div class="col-lg-6 pt-4 pt-lg-0 order-2 order-lg-1 content">
-            <h3>Objetivo</h3>
-            <p class="fst-italic">
-              Auxiliamos e damos visibilidade às mulheres microempreendedoras. Não nos limitamos
-              apenas ao aspecto Técnico; identificamos também as necessidades emocionais e estamos
-              comprometidos em ajudá-las nessa difícil jornada. Além disso, realizaremos doações para
-              mulheres indígenas e periféricas, auxiliando-as na construção de suas empresas.
-            </p>
-
-          </div>
-        </div>
-
-      </div>
-    </section>End About Section -->
-
      <!-- Services Start -->
     <div class="container-fluid services py-5 my-5">
       <div class="container py-5">
           <div class="text-center mx-auto pb-5 wow fadeIn" data-wow-delay=".3s" style="max-width: 600px;">
               <h5 class="text-primary">Nossos Serviços</h5>
-              <h2>Serviços criados especificamente para o seu negócio</h2>
+              <h2 class="h2-sm">Serviços desenvolvidos especialmente para a sua empresa.</h2>
           </div>
 
           <div class="row g-5 services-inner">
@@ -258,7 +226,7 @@
                         <img src="./assets/imagens/taxa.png" width="150px" height="150px" alt="">
                       </i>
                       <h4 class="mb-3">Fluxo de caixa</h4>
-                      <p class="mb-4">Conheça as movimentações de entradas e saídas, a geração de caixa e o saldo do caixa por período!</p>
+                      <p class="mb-4">Automatize para monitorar entradas, saídas e diferenciar custos. Decisões informadas de maneira eficiente.</p>
                     </div>
                   </div>
                 </div>
@@ -272,7 +240,7 @@
                                 <img src="./assets/imagens/circular-economy.png" width="150px" height="150px" alt="">
                               </i>
                               <h4 class="mb-3">Capital de giro</h4>
-                              <p class="mb-4">Maximize sua eficiência financeira com nossa automação de capital de giro.</p>
+                              <p class="mb-4">Automatize a reserva financeira para garantir a estabilidade do negócio.</p>
                           </div>
                       </div>
                   </div>
@@ -286,7 +254,8 @@
                                 <img src="./assets/imagens/painel.png" width="150px" height="150px" alt="">
                               </i>
                               <h4 class="mb-3">Dashboard</h4>
-                              <p class="mb-4">Otimize seu controle com nosso deshboard.</p>
+                              <p class="mb-4"> Painel visual facilita a compreensão e otimiza a visão de atividades e dados importantes.
+                              </p>
                           </div>
                       </div>
                   </div>
@@ -300,23 +269,9 @@
                                 <img src="./assets/imagens/kpi.png" width="150px" height="150px" alt="">
                               </i>
                               <h4 class="mb-3">KPI</h4>
-                              <p class="mb-4">Alcance o sucesso com KPIs!</p>
+                              <p class="mb-4">Monitoramento essencial para sucesso: fluxo de caixa e capital de giro.</p>
                           </div>
                           
-                      </div>
-                  </div>
-              </div>
-
-              <div class="col-md-6 col-lg-4 wow fadeIn" data-wow-delay=".5s">
-                  <div class="services-item bg-light">
-                      <div class="p-4 text-center services-content">
-                          <div class="services-content-icon">
-                              <i class="fa fa-envelope-open fa-7x mb-4 text-primary">
-                                <img src="./assets/imagens/negocio.png" width="150px" height="150px" alt="">
-                              </i>
-                              <h4 class="mb-3">Contas a pagar e a receber</h4>
-                              <p class="mb-4">Mantenha suas contas a pagar e a receber sempre atualizadas!</p>
-                          </div>
                       </div>
                   </div>
               </div>
@@ -329,7 +284,7 @@
                                 <img src="./assets/imagens/resultados.png" width="150px" height="150px" alt="">
                               </i>
                               <h4 class="mb-3">DRE</h4>
-                              <p class="mb-4">Relatório de receitas, custos e despesas para entender a saúde financeira da empresa.</p>
+                              <p class="mb-4"> relatório mensal que mostra se a empresa está lucrando ou tendo prejuízo.</p>
                           </div>
                       </div>
                   </div>
@@ -342,8 +297,8 @@
                               <i class="fas fa-laptop fa-7x mb-4 text-primary">
                                 <img src="./assets/imagens/isencao.png" width="150px" height="150px" alt="">
                               </i>
-                              <h4 class="mb-3">Alerta</h4>
-                              <p class="mb-4">Ganhe controle total com nosso alerta de recebimento e pagamento</p>
+                              <h4 class="mb-3">Alertas</h4>
+                              <p class="mb-4">Notificações para contas a pagar e a receber, evitando descuidos. Alertas via plataforma e WhatsApp</p>
                           </div>
                       </div>
                   </div>
@@ -358,7 +313,7 @@
     <!-- Services Start -->
     <div class="container-fluid services py-5 mb-5">
       <div class="container">
-          <div class="text-center mx-auto pb-5 wow fadeIn" data-wow-delay=".3s" style="max-width: 600px; margin-top: 50px;">
+          <div class="text-center mx-auto pb-5 wow fadeIn" data-wow-delay=".3s" style="max-width: 600px; margin-top: 100px;">
               <h1>Vantagens e beneficios</h1>
           </div>
           <div class="row g-5 services-inner">
@@ -440,8 +395,8 @@
 
       <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
         <h1 class="display-4">Depoimentos</h1>
-        <p class="depoimento">
-          Mulheres microempreendedoras transformam sonhos em sucesso. Veja o que nossas clientes têm a dizer sobre suas jornadas inspiradoras.
+        <p class="Depoimento">
+            Microempreendedoras transformam seus sonhos em sucesso. Veja o que as nossas clientes têm a dizer sobre suas jornadas inspiradoras.
         </p>
       </div>
 
@@ -452,11 +407,11 @@
             <div class="testimonial-item">
               <p>
                 <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-                  Com a EMP, meus problemas financeiros se tornaram superáveis. A plataforma é uma aliada essencial para o crescimento do nosso negócio.
+                Sou imensamente grata por ter descoberto essa plataforma incrível! As microempreendedoras aqui não apenas transformam seus sonhos em sucesso, mas também compartilham suas jornadas de forma inspiradora.
                 <i class="bx bxs-quote-alt-right quote-icon-right"></i>
               </p>
-              <img src="assets/img/testimonials/testimonials-2.jpg" class="testimonial-img" alt="">
-              <h3>Sara Rodrigues</h3>
+              <img src="./assets/imagens/Luana.jpeg" class="testimonial-img" alt="">
+              <h3>Luana Santos</h3>
               <h4>Microempreendedora</h4>
             </div>
           </div><!-- End testimonial item -->
@@ -465,11 +420,26 @@
             <div class="testimonial-item">
               <p>
                 <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-                  Com a EMP, meus problemas financeiros se tornaram superáveis. A plataforma é uma aliada essencial para o crescimento do nosso negócio.
+                É incrível como essa plataforma vai além das expectativas, abraçando aspectos tão essenciais. Recomendo a todas que buscam não apenas eficiência, mas também um cuidado especial com o bem-estar. 👏🌟"
                 <i class="bx bxs-quote-alt-right quote-icon-right"></i>
               </p>
-              <img src="assets/img/testimonials/testimonials-3.jpg" class="testimonial-img" alt="">
-              <h3>Andreia Santos</h3>
+              <img src="./assets/imagens/Ana_Paula.jpeg" class="testimonial-img" alt="">
+              <h3>Ana Paula</h3>
+              <h4>Microempreendedora</h4>
+            </div>
+
+            
+          </div><!-- End testimonial item -->
+
+          <div class="swiper-slide">
+            <div class="testimonial-item">
+              <p>
+                <i class="bx bxs-quote-alt-left quote-icon-left"></i>
+                Iniciando minha jornada, encontrei desafios devido à falta de conhecimento. A plataforma e o diálogo com mulheres na área têm sido essenciais, proporcionando suporte valioso. A cada obstáculo, descubro soluções e inspirações.
+                <i class="bx bxs-quote-alt-right quote-icon-right"></i>
+              </p>
+              <img src="./assets/imagens/Izabel.jpeg" class="testimonial-img" alt="">
+              <h3>Maria Izabel</h3>
               <h4>Microempreendedora </h4>
             </div>
           </div><!-- End testimonial item -->
@@ -478,11 +448,11 @@
             <div class="testimonial-item">
               <p>
                 <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-                  Com a EMP, meus problemas financeiros se tornaram superáveis. A plataforma é uma aliada essencial para o crescimento do nosso negócio.
+                Com a EMP, finalmente consegui organizar toda a parte financeira do meu negócio! Agora, faço uma administração mais eficiente e obtenho total controle. Esta plataforma é realmente transformadora, Recomendo a todos em busca de praticidade e sucesso financeiro! 
                 <i class="bx bxs-quote-alt-right quote-icon-right"></i>
               </p>
-              <img src="assets/img/testimonials/testimonials-2.jpg" class="testimonial-img" alt="">
-              <h3>Fernanda Borges</h3>
+              <img src="./assets/imagens/Leia Lima.png" class="testimonial-img" alt="">
+              <h3>Leia Lima</h3>
               <h4>Microempreendedora</h4>
             </div>
           </div><!-- End testimonial item -->
@@ -491,14 +461,17 @@
             <div class="testimonial-item">
               <p>
                 <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-                  Com a EMP, meus problemas financeiros se tornaram superáveis. A plataforma é uma aliada essencial para o crescimento do nosso negócio.
+                Agora, com a plataforma, meu dia a dia ficou muito mais prático, e o controle do meu gerenciamento financeiro é incrível! Além disso, tenho a oportunidade de compartilhar minha experiência com outras mulheres, ajudando a diminuir as dificuldades que enfrentam.
                 <i class="bx bxs-quote-alt-right quote-icon-right"></i>
               </p>
-              <img src="assets/img/testimonials/testimonials-3.jpg" class="testimonial-img" alt="">
-              <h3>Lara Andrade</h3>
+              <img src="./assets/imagens/Ediline_Santos.jpeg" class="testimonial-img" alt="">
+              <h3>Edilene Santos</h3>
               <h4>Microempreendedora</h4>
             </div>
+
+            
           </div><!-- End testimonial item -->
+
 
         </div>
         <div class="swiper-pagination"></div>
@@ -511,7 +484,7 @@
   <section id="pricing" class="pricing ">
     <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
       <h1 class="display-4">Planos</h1>
-      <p class="lead">Empodere-se com nossos planos.Juntas, somos invencíveis!</p>
+      <p class="lead">Empodere-se com nossos planos. </p>
     </div>
     <div class="container ">
 
@@ -522,12 +495,15 @@
             <h3 class="cor-letra" >Básico</h3>
             <h4>Gratuito</h4>
             <ul>
-              <li>Fluxo de caixa</li>
-              <li>Capital de giro</li>
-              <li>Suporte emocional</li>
-              <li class="na">Alerta</li>
-              <li class="na">Dashboard</li>
-              <li class="na">KPI</li>
+              <li class="Icon_X"> <img src="./assets/imagens/Vector_valido.png" alt="">
+                Fluxo de caixa</li>
+              <li class="Icon_X"> <img  src="./assets/imagens/Vector_valido.png" alt="">
+               Capital de giro</li>
+              <li class="Icon_X"> <img  src="./assets/imagens/Vector_valido.png" alt="">
+               Suporte emocional</li>
+              <li class="Icon_X"> <img  src="./assets/imagens/Vector_error.png" alt="">  Alerta</li>
+              <li class="Icon_X"><img   src="./assets/imagens/Vector_error.png" alt="">  Dashboard</li>
+              <li class="Icon_X"> <img  src="./assets/imagens/Vector_error.png" alt="">  KPI</li>
             </ul>
             <div class="btn-wrap">
               <a href="#" class="btn-buy">Assinar</a>
@@ -540,12 +516,12 @@
             <h3 class="cor-letra">Avançado</h3>
             <h4><sup>R$</sup>117,90<span> /mês</span></h4>
             <ul>
-              <li>Fluxo de caixa</li>
-              <li>Capital de giro</li>
-              <li>Suporte emocional</li>
-              <li>Alerta</li>
-              <li>Dashboard</li>
-              <li>KPI</li>
+              <li  class="Icon_X"> <img src="./assets/imagens/Vector_valido.png" alt="">  Fluxo de caixa</li>
+              <li  class="Icon_X"> <img src="./assets/imagens/Vector_valido.png" alt="">  Capital de giro</li>
+              <li  class="Icon_X"> <img src="./assets/imagens/Vector_valido.png" alt="">  Suporte emocional</li>
+              <li  class="Icon_X"> <img src="./assets/imagens/Vector_valido.png" alt="">  Alerta</li>
+              <li  class="Icon_X"> <img src="./assets/imagens/Vector_valido.png" alt="">  Dashboard</li>
+              <li  class="Icon_X"> <img src="./assets/imagens/Vector_valido.png" alt="">  KPI</li>
             </ul>
             <div class="btn-wrap">
               <a href="#" class="btn-buy">Assinar</a>
@@ -704,6 +680,7 @@
     )();
   </script>
 
+
 <script>
   function redirecionarLogin() {
     var email = document.getElementById('email').value;
@@ -726,6 +703,10 @@
         }
   }
 </script>
+
+
+  
+
 
 </body>
 
