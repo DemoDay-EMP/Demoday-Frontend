@@ -2057,6 +2057,20 @@ element.style {
 }
 
 
+@media screen and (max-width: 700px) {
+  .sobre-letra{
+    font-size: 10px;
+  }
+
+  .swiper-slide img {
+    width: 80%;
+    height: 80%;
+    object-fit: cover;
+  }
+  
+}
+
+
 /*--------------------------------------------------------------
                       PÁGINA DOE
                       PÁGINA DOE
@@ -2207,4 +2221,119 @@ element.style {
 
 .pt-5, .py-5 {
   padding-top: 2px!important;
+}
+
+
+.whatsapp{
+  display: flex;
+  position: relative;
+  margin-top: 200px;
+}
+
+
+/*--------------------------------------------------------------
+                      PÁGINA EVENTS (Cadastro)
+                      PÁGINA EVENTS (Cadastro)
+--------------------------------------------------------------*/
+
+/* Card forms */
+.card {
+  margin: auto;
+  max-width: 80vw;
+  border: none;
+  border-radius: 5px;
+  box-shadow: 0px 0 30px rgba(1, 41, 112, 0.1);
+}
+
+.card-header,
+.card-footer {
+  border-color: #ebeef4;
+  background-color: #fff;
+  color: #798eb3;
+  padding: 15px;
+}
+
+.texto-cadastro {
+  padding: 20px 0 15px 0;
+  font-size: 30px;
+  font-weight: 500;
+  color: var(--beterraba);
+  font-family: "Poppins", sans-serif;
+}
+
+.subtitulo{
+  font-size: 15px;
+}
+.card-title span {
+  color: #899bbd;
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.card-body {
+  padding: 0 20px 20px 20px;
+}
+
+.card-img-overlay {
+  background-color: rgba(255, 255, 255, 0.6);
+}
+
+.tamanho-cadastro{
+  width: 40vw;
+  height: auto;
+}
+
+@media screen and (max-width: 600px) {
+  .tamanho-cadastro {
+    width: 80vw;
+    height: auto; /* Evite altura fixa para telas menores */
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .tamanho-cadastro{
+    width: 80vw;
+    height: auto;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .tamanho-cadastro{
+    width: 80vw;
+    height: auto;
+  }
+}
+
+.logo-emp{
+  display: flex;
+  justify-content: center;
+
+}
+
+.form-check{
+  display: flex;
+  justify-content: center;
+  padding: 10px;
+}
+
+.form-check-label{
+  padding-left: 5px;
+}
+
+.termos{
+  color: var(--beterraba);
+}
+
+.estilo-forms{
+  padding: 15px;
+}
+
+.botao-cadastro{
+  margin-top: 20px;
+  background-color: var(--beterraba);
+  color: white;
+}
+
+.botao-cadastro:hover{
+  background-color: var(--amarelo);
 }

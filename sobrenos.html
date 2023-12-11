@@ -69,7 +69,7 @@
       <h1 class="logo me-auto"><a href="index.html"> <img src="./assets/imagens/logo_emp.png" alt="Logo EMP"></a></h1>
       <!-- Uncomment below if you prefer to use an image logo -->
       <!-- <a href="index.html" class="logo me-auto"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
-
+    
       <nav id="navbar" class="navbar order-last order-lg-0">
         <ul>
           <li><a href="index.html">Home</a></li>
@@ -123,26 +123,26 @@
 
       <!-- Signup From -->
       <div class="form signup_form">
-        <form action="#">
+        <form id="signupForm">
           <h2>Cadastrar</h2>
-
+  
           <div class="input_box">
-            <input type="email" placeholder="Insira seu email" required />
-            <i class="uil uil-envelope-alt email"></i>
+              <input type="email" id="email" placeholder="Insira seu email" required />
+              <i class="uil uil-envelope-alt email"></i>
           </div>
           <div class="input_box">
-            <input type="password" placeholder="Crie sua senha" required />
-            <i class="uil uil-lock password"></i>
-            <i class="uil uil-eye-slash pw_hide"></i>
+              <input type="password" id="password" placeholder="Crie sua senha" required />
+              <i class="uil uil-lock password"></i>
+              <i class="uil uil-eye-slash pw_hide"></i>
           </div>
           <div class="input_box">
-            <input type="password" placeholder="Confirme sua senha" required />
-            <i class="uil uil-lock password"></i>
-            <i class="uil uil-eye-slash pw_hide"></i>
+              <input type="password" id="confirmPassword" placeholder="Confirme sua senha" required />
+              <i class="uil uil-lock password"></i>
+              <i class="uil uil-eye-slash pw_hide"></i>
           </div>
-
-          <button class="button">Cadastra-se</button>
-
+  
+          <button type="button" class="button" onclick="redirecionarLogin()">Continuar</button>
+  
           <div class="login_signup">Já possui uma conta? <a href="#" id="login">Login</a></div>
         </form>
       </div>
@@ -242,32 +242,32 @@
 
         <div class="swiper-slide">
           <img src="./assets/imagens/Julia.png" height="400px" alt="">
-          <p>Julia Silva <br>Full Stack e Product Owner</p>
+          <p class="sobre-letra">Julia Silva <br>Full Stack e Product Owner</p>
         </div>
 
         <div class="swiper-slide">
           <img src="./assets/imagens/Nath.jpeg" height="400px" alt="">
-          <p>Nathalia Marins <br>Front End</p>
+          <p class="sobre-letra">Nathalia Marins <br>Front End</p>
         </div>
 
         <div class="swiper-slide">
           <img src="./assets/imagens/Deivid.png" height="400px" alt="">
-          <p>Deivid Moises <br>Full Stack Designer e Scrum Master</p>
+          <p class="sobre-letra">Deivid Moises <br>Full Stack Designer e Scrum Master</p>
         </div>
 
         <div class="swiper-slide">
           <img src="./assets/imagens/Gui.png" height="400px" alt="">
-          <p>Guilherme Alefe <br>Back-End e Financeiro</p>
+          <p class="sobre-letra">Guilherme Alefe <br>Back-End e Financeiro</p>
         </div>
 
         <div class="swiper-slide">
           <img src="./assets/imagens/Gleyce.jpeg" height="400px" alt="">
-          <p>Gleyce Pereira <br>Full Stack</p>
+          <p class="sobre-letra">Gleyce Pereira <br>Full Stack</p>
         </div>
 
         <div class="swiper-slide">
           <img src="./assets/imagens/Gaby.png" height="400px" alt="">
-          <p>Gabriely Santos <br>Back-End</p>
+          <p class="sobre-letra">Gabriely Santos <br>Back-End</p>
         </div>
       </div>
       <div class="swiper-pagination"></div>
@@ -302,6 +302,10 @@
 
     </div>
   </section><!-- End Counts Section -->
+
+    <!-- <a class="whatsapp" target=" _blank" href="https://api.whatsapp.com/send?phone=5511983928638&text=Ol%C3%A1,%20gostaria%20de%20saber%20mais%20informa%C3%A7%C3%B5es%20sobre%20a%20EMP.">
+      <button type="buttom"><img src="./assets/imagens/whatsapp-logo-png.png" width="50px" height="50px" alt=""> </button>
+    </a> -->
 
   </main><!-- End #main -->
 
@@ -361,6 +365,8 @@
     </div>
   </footer><!-- End Footer -->
 
+  <div id="preloader"></div>
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
   <!-- Vendor JS Files -->
   <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
@@ -421,6 +427,29 @@
       },
     });
   </script>
+
+<script>
+  function redirecionarLogin() {
+    var email = document.getElementById('email').value;
+        var password = document.getElementById('password').value;
+        var confirmPassword = document.getElementById('confirmPassword').value;
+
+        // Verificar se os campos estão preenchidos
+        if (email && password && confirmPassword) {
+            // Verificar se as senhas são iguais
+            if (password === confirmPassword) {
+                // Se todos os campos estiverem preenchidos e as senhas forem iguais,
+                // redirecione para a página de login
+                window.location.href = "events.html";
+            } else {
+                alert("As senhas não coincidem. Por favor, verifique.");
+            }
+        } else {
+            // Caso contrário, exiba uma mensagem de erro ou tome outra ação adequada
+            alert("Por favor, preencha todos os campos.");
+        }
+  }
+</script>
 
 </body>
 

@@ -133,26 +133,26 @@
 
       <!-- Signup From -->
       <div class="form signup_form">
-        <form action="#">
+        <form id="signupForm">
           <h2>Cadastrar</h2>
-
+  
           <div class="input_box">
-            <input type="email" placeholder="Insira seu email" required />
-            <i class="uil uil-envelope-alt email"></i>
+              <input type="email" id="email" placeholder="Insira seu email" required />
+              <i class="uil uil-envelope-alt email"></i>
           </div>
           <div class="input_box">
-            <input type="password" placeholder="Crie sua senha" required />
-            <i class="uil uil-lock password"></i>
-            <i class="uil uil-eye-slash pw_hide"></i>
+              <input type="password" id="password" placeholder="Crie sua senha" required />
+              <i class="uil uil-lock password"></i>
+              <i class="uil uil-eye-slash pw_hide"></i>
           </div>
           <div class="input_box">
-            <input type="password" placeholder="Confirme sua senha" required />
-            <i class="uil uil-lock password"></i>
-            <i class="uil uil-eye-slash pw_hide"></i>
+              <input type="password" id="confirmPassword" placeholder="Confirme sua senha" required />
+              <i class="uil uil-lock password"></i>
+              <i class="uil uil-eye-slash pw_hide"></i>
           </div>
-
-          <button class="button">Cadastra-se</button>
-
+  
+          <button type="button" class="button" onclick="redirecionarLogin()">Continuar</button>
+  
           <div class="login_signup">Já possui uma conta? <a href="#" id="login">Login</a></div>
         </form>
       </div>
@@ -582,6 +582,29 @@
     document.body.appendChild(s);
   }
   )();
+</script>
+
+<script>
+  function redirecionarLogin() {
+    var email = document.getElementById('email').value;
+        var password = document.getElementById('password').value;
+        var confirmPassword = document.getElementById('confirmPassword').value;
+
+        // Verificar se os campos estão preenchidos
+        if (email && password && confirmPassword) {
+            // Verificar se as senhas são iguais
+            if (password === confirmPassword) {
+                // Se todos os campos estiverem preenchidos e as senhas forem iguais,
+                // redirecione para a página de login
+                window.location.href = "events.html";
+            } else {
+                alert("As senhas não coincidem. Por favor, verifique.");
+            }
+        } else {
+            // Caso contrário, exiba uma mensagem de erro ou tome outra ação adequada
+            alert("Por favor, preencha todos os campos.");
+        }
+  }
 </script>
 
 </body>

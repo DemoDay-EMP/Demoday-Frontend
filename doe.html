@@ -122,25 +122,25 @@
 
     <!-- Signup From -->
     <div class="form signup_form">
-      <form action="#">
+      <form id="signupForm">
         <h2>Cadastrar</h2>
 
         <div class="input_box">
-          <input type="email" placeholder="Insira seu email" required />
-          <i class="uil uil-envelope-alt email"></i>
+            <input type="email" id="email" placeholder="Insira seu email" required />
+            <i class="uil uil-envelope-alt email"></i>
         </div>
         <div class="input_box">
-          <input type="password" placeholder="Crie sua senha" required />
-          <i class="uil uil-lock password"></i>
-          <i class="uil uil-eye-slash pw_hide"></i>
+            <input type="password" id="password" placeholder="Crie sua senha" required />
+            <i class="uil uil-lock password"></i>
+            <i class="uil uil-eye-slash pw_hide"></i>
         </div>
         <div class="input_box">
-          <input type="password" placeholder="Confirme sua senha" required />
-          <i class="uil uil-lock password"></i>
-          <i class="uil uil-eye-slash pw_hide"></i>
+            <input type="password" id="confirmPassword" placeholder="Confirme sua senha" required />
+            <i class="uil uil-lock password"></i>
+            <i class="uil uil-eye-slash pw_hide"></i>
         </div>
 
-        <button class="button">Cadastra-se</button>
+        <button type="button" class="button" onclick="redirecionarLogin()">Continuar</button>
 
         <div class="login_signup">Já possui uma conta? <a href="#" id="login">Login</a></div>
       </form>
@@ -249,9 +249,11 @@
 
       <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-md-0" data-aos="fade-up" data-aos-delay="150">
         <div class="icon-box">
-          <div class="icon"> <img src="./assets/imagens/ong_elas.png" class="img-fluid w-100 rounded" alt=""></div>
-          <h4><a class="link-doe" href="https://fundosocialelas.org/">Fundo elas </a></h4>
-          <p>O Fundo Elas é uma ONG para mulheres e é o primeiro fundo de investimento social que financia exclusivamente projetos que promovam o protagonismo das mulheres no Brasil.</p>
+          <div class="icon"> <img src="./assets/imagens/ong-isa.png" class="img-fluid w-100 rounded" alt=""></div>
+          <h4><a class="link-doe" href="https://www.socioambiental.org/">Instituto Socioambiental (ISA) </a></h4>
+          <p>O Instituto Socioambiental (ISA) é uma organização não governamental brasileira fundada em 22 de abril de 1994 com o objetivo de defender bens e direitos sociais, coletivos e difusos,
+            relativos ao meio ambiente, ao patrimônio cultural, aos direitos dos povos indígenas do Brasil.
+          </p>
         </div>
       </div>
 
@@ -261,6 +263,34 @@
           <h4><a class="link-doe" href="https://rme.net.br/">Rede mulher empreendedora</a></h4>
           <p>O Instituto Rede Mulher Empreendedora, apoia e auxilia projetos e iniciativas que empoderam mulheres em situação de vulnerabilidade social, incentivando a
             independência financeira e o poder de decisão pessoal.
+          </p>
+        </div>
+      </div>
+
+      <div class="col-lg-4 col-md-6 d-flex align-items-stretch" data-aos="fade-up">
+        <div class="icon-box">
+          <div class="icon"><img src="./assets/imagens/ong-comissao.jpg" class="img-fluid w-100 rounded" alt=""></div>
+          <h4><a class="link-doe" href="https://www.yvyrupa.org.br/">Comissão Guarani Yvyrupa (CGY)</a></h4>
+          <p>A Comissão Guarani Yvyrupa (CGY) é uma organização indígena que congrega coletivos do povo Guarani nas regiões Sul e Sudeste do Brasil na luta pela 
+            terra.
+          </p>
+        </div>
+      </div>
+
+      <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-md-0" data-aos="fade-up" data-aos-delay="150">
+        <div class="icon-box">
+          <div class="icon"> <img src="./assets/imagens/ong_elas.png" class="img-fluid w-100 rounded" alt=""></div>
+          <h4><a class="link-doe" href="https://fundosocialelas.org/">Fundo elas </a></h4>
+          <p>O Fundo Elas é uma ONG para mulheres e é o primeiro fundo de investimento social que financia exclusivamente projetos que promovam o protagonismo das mulheres no Brasil.</p>
+        </div>
+      </div>
+
+      <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-lg-0" data-aos="fade-up" data-aos-delay="300">
+        <div class="icon-box">
+          <div class="icon"> <img src="./assets/imagens/ong-survival.jpg" class="img-fluid w-100 rounded" alt=""> </div>
+          <h4><a class="link-doe" href="https://survivalbrasil.org/">Survival International</a></h4>
+          <p>Organização internacional sediada em Londres, Inglaterra, que atua na defesa dos povos indígenas ao redor do mundo. No Brasil, a ONG 
+            trabalha em prol dos povos Guarani, Kawahiva e Yanomami.
           </p>
         </div>
       </div>
@@ -373,6 +403,29 @@
     }
     )();
   </script>
+
+<script>
+  function redirecionarLogin() {
+    var email = document.getElementById('email').value;
+        var password = document.getElementById('password').value;
+        var confirmPassword = document.getElementById('confirmPassword').value;
+
+        // Verificar se os campos estão preenchidos
+        if (email && password && confirmPassword) {
+            // Verificar se as senhas são iguais
+            if (password === confirmPassword) {
+                // Se todos os campos estiverem preenchidos e as senhas forem iguais,
+                // redirecione para a página de login
+                window.location.href = "events.html";
+            } else {
+                alert("As senhas não coincidem. Por favor, verifique.");
+            }
+        } else {
+            // Caso contrário, exiba uma mensagem de erro ou tome outra ação adequada
+            alert("Por favor, preencha todos os campos.");
+        }
+  }
+</script>
 
 </body>
 
