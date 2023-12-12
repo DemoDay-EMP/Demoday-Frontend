@@ -81,6 +81,12 @@ function cadastrarUsuario() {
   });
 }
 
+function realizarLogoff() {
+  localStorage.removeItem('email');
+  localStorage.removeItem('senha');
+  
+  window.location.href = 'index.html';
+}
 
 
 function login() {
