@@ -115,7 +115,7 @@ function login() {
                 nomeDoUsuario = dataLogin.email;
                 console.log(data, "data");
                 // Agora, você pode definir o item no localStorage
-                localStorage.setItem('usuario', nomeDoUsuario);
+                localStorage.setItem('email', nomeDoUsuario);
                 // Redirecionar para a página restrita
                 window.location.href = 'dashboard.html';
             } else {
@@ -134,18 +134,17 @@ function login() {
 
 
 function obterInformacoesUsuario() {
-    // Obter o nome do usuário armazenado no Local Storage
-    const usuario = localStorage.getItem('usuario');
-    console.log('Nome do usuário do Local Storage:', usuario);
+    const email = localStorage.getItem('email');
+    console.log('Nome do usuário do Local Storage:', email);
 
-    if (!usuario) {
+    if (!email) {
         console.error('Nome do usuário não encontrado no Local Storage.');
         return;
     }
 
-    console.log('Nome do usuário antes do fetch:', usuario);
+    console.log('Nome do usuário antes do fetch:', email);
 
-    fetch(`http://localhost:8091/usuario_pf/search/email/${usuario}`, {
+    fetch(`http://localhost:8091/usuario_pf/search/email/${email}`, {
         method: 'GET',
     })
         .then(response => {
@@ -153,27 +152,25 @@ function obterInformacoesUsuario() {
             return response.json();
         })
         .then(data => {
-            console.log('Dados obtidos do servidor:', data);
+            const nomeElementos = document.querySelectorAll('.nomeElement');
+            const emailElementos = document.querySelectorAll('.emailElement');
 
-            console.log('Nome Completo:', data.email);
-            console.log('Imagem de Perfil:', data.img_usuario);
-
-            const urlImagem = data.url_imagem;
-            const imagemElemento = document.getElementById('img_usuario');
-            const nomeUsuarioElemento = document.getElementById('nome');
-
-            if (imagemElemento && nomeUsuarioElemento) {
-                imagemElemento.src = urlImagem;
-                // imagemElemento.alt = 'Imagem do Usuário';
-                nomeUsuarioElemento.innerText = "Email do Usuário: " + data.nome;
+            if (nomeElementos.length > 0) {
+                nomeElementos.forEach(elemento => {
+                    elemento.innerText = data.nome;
+                });
+                emailElementos.forEach(elemento => {
+                  elemento.innerText = data.email;
+              });
             } else {
-                console.error('Elemento com ID "img_usuario" ou "nome_usuario" não encontrado.');
+                console.error('Elemento com classe "nomeElement" não encontrado.');
             }
         })
         .catch(error => {
             console.error('Erro ao obter informações do usuário:', error);
         });
 }
+
 
 
 
