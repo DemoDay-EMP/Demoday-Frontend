@@ -1,4 +1,53 @@
-function visualizarLancamentos() {
+function realizarLancamento() {
+    console.log("Testando");
+    const cpf = 4564564
+    const formLancamento = document.getElementById('transaction-form');
+    
+    // Use o FormData apenas se estiver lidando com um formulário que faz upload de arquivos.
+    // Se não, você pode criar um objeto diretamente.
+    const formDataCadastroUsuario = new FormData(formLancamento);
+  
+    // Obtendo valores diretamente do formulário
+    const data = {
+        cpf: cpf,
+        valor: formLancamento.valor.value,
+        tipo_conta: formLancamento.tipoConta.value,
+        data_lancamento: formLancamento.dataLancamento.value,
+        tipo_lancamento: formLancamento.tipoLancamento.value,
+        contaDestino: formLancamento.contaDestino.value,
+        forma_pagamento: formLancamento.formaPagamento.value,
+        observacao: formLancamento.observacao.value,
+        // status_lancamento: formLancamento.pagamentoRealizado.value,
+    };
+  
+    console.log(data, "Testando");
+  
+    fetch('http://localhost:8091/transaction/create', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+    })
+    .then(response => {
+        if (!response.ok) {
+            return response.json().then(data => {
+                throw new Error(data.message);
+            });
+        }
+        return response.json();
+    })
+    .then(data => {
+        // window.location.href = 'index.html';
+    })
+    .catch(error => {
+        console.error('Erro:', error);
+        exibirMensagemDeErroCadastro(error.message);
+        console.log(data, "Não Funcionou");
+    });
+  }
+
+function visualizarDRE() {
     const cpf = 4564564;
 
     fetch(`http://localhost:8091/transaction/cpf/${cpf}`, {
@@ -31,7 +80,7 @@ function visualizarLancamentos() {
 
             if (data.length > 0) {
 
-                
+
 
                 // ----- RECEITAS ----- \\
                 const receitas = data.filter(transaction => transaction.tipo_conta === 'Receita');
@@ -59,8 +108,29 @@ function visualizarLancamentos() {
                 elementoSaldoAtual.innerText = "R$ " + saldoAtualFormatado;
 
                 // ----- SALDO INICIAL ----- \\
+                const saldoInicialReceita = data.filter(transaction => transaction.data_lancamento === '2023-12-01' && transaction.tipo_conta === 'Receita');
+                const saldoInicialDespesa = data.filter(transaction => transaction.data_lancamento === '2023-12-01' && transaction.tipo_conta === 'Despesa');
+                // Soma os valores das transações filtradas
+                const totalSaldoInicialReceita = saldoInicialReceita.reduce((total, transaction) => total + transaction.valor, 0);
+                const totalSaldoInicialDespesa = saldoInicialDespesa.reduce((total, transaction) => total + transaction.valor, 0);
+                const totalSaldoInicial = totalSaldoInicialReceita - totalSaldoInicialDespesa;
+                // Formata o dado para utilizar duas casas decimais e "," ao invés de "."
+                const saldoInicialFormatado = totalSaldoInicial.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+                // Exibe o total na página
+                elementoSaldoInicial.innerText = "R$ " + saldoInicialFormatado;
 
                 // ----- SALDO PREVISTO ----- \\
+                // ----- SALDO INICIAL ----- \\
+                const saldoPrevistoReceita = data.filter(transaction => transaction.tipo_conta === 'Receita');
+                const saldoPrevistoDespesa = data.filter(transaction => transaction.tipo_conta === 'Despesa');
+                // Soma os valores das transações filtradas
+                const totalSaldoPrevistoReceita = saldoPrevistoReceita.reduce((total, transaction) => total + transaction.valor, 0);
+                const totalSaldoPrevistoDespesa = saldoPrevistoDespesa.reduce((total, transaction) => total + transaction.valor, 0);
+                const totalSaldoPrevisto = totalSaldoPrevistoReceita - totalSaldoInicialDespesa;
+                // Formata o dado para utilizar duas casas decimais e "," ao invés de "."
+                const saldoPrevistoFormatado = totalSaldoPrevisto.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+                // Exibe o total na página
+                elementoSaldoPrevisto.innerText = "R$ " + saldoPrevistoFormatado;
 
 
                 // ----- RECEITA BRUTA ----- \\
@@ -141,7 +211,7 @@ function visualizarLancamentos() {
                 const irpjCSLLFormatado = totalIrpjCSLL.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
                 // Exibe o total na página
                 elementoIrpjCSLL.innerText = "R$ " + irpjCSLLFormatado;
-                
+
                 // ----- PARTICIPAÇÕES ----- \\ Trocar o "tipo_lancamento === 
                 const participacoes = data.filter(transaction => transaction.tipo_lancamento === 'custos');
                 // Soma os valores das transações filtradas
@@ -158,7 +228,7 @@ function visualizarLancamentos() {
                 // Exibe o total na página
                 elementoResultadoFinal.innerText = "R$ " + resultadoFinalFormatado;
 
-                
+
             } else {
                 elemento.innerText = 0;
                 elementoReceitaBruta.innerText = 0;
@@ -171,3 +241,69 @@ function visualizarLancamentos() {
             console.error('Erro ao obter informações do usuário:', error);
         });
 }
+
+// Inicialize a tabela fora da função filtrarTabela
+const tabela = new simpleDatatables.DataTable('.datatable', {
+    perPageSelect: [5, 10, 15, ["All", -1]],
+    columns: [{
+        select: 2,
+        sortSequence: ["desc", "asc"]
+    },
+    {
+        select: 3,
+        sortSequence: ["desc"]
+    },
+    {
+        select: 4,
+        cellClass: "green",
+        headerClass: "red"
+    }]
+});
+
+function visualizarLancamentos() {
+    const cpf = 4564564;
+
+    fetch(`http://localhost:8091/transaction/cpf/${cpf}`, {
+        method: 'GET',
+    })
+        .then(response => {
+            console.log('Status da resposta do fetch:', response.status);
+            return response.json();
+        })
+        .then(data => {
+            const tabelaBody = document.getElementById('tabelaBody');
+            console.log(tabelaBody);
+            console.log(data);
+
+            if (data.length > 0) {
+                tabela.destroy(); // Destrua a instância anterior da tabela
+
+                data.forEach(result => {
+                    // Criar uma nova linha para cada resultado
+                    const novaLinha = tabelaBody.insertRow();
+
+                    // Adicionar células à nova linha
+                    const cellNome = novaLinha.insertCell(0);
+                    const cellTipoConta = novaLinha.insertCell(1);
+                    const cellObservacoes = novaLinha.insertCell(2);
+                    const cellData = novaLinha.insertCell(3);
+                    const cellValor = novaLinha.insertCell(4);
+
+                    // Preencher as células com os valores do resultado
+                    cellNome.innerText = result.tipo_lancamento; // Substitua 'nome' pelo nome real do atributo
+                    cellTipoConta.innerText = result.tipo_conta; // Substitua 'tipoConta' pelo nome real do atributo
+                    cellObservacoes.innerText = result.observacao; // Substitua 'observacoes' pelo nome real do atributo
+                    cellData.innerText = result.data_lancamento; // Substitua 'data' pelo nome real do atributo
+                    cellValor.innerText = result.valor; // Substitua 'valor' pelo nome real do atributo
+                });
+
+                tabela.init(); // Reinicialize a tabela com os novos dados
+            } else {
+                console.error('Elemento com classe "tabelaBody" não encontrado ou nenhum dado retornado pela API.');
+            }
+        })
+        .catch(error => {
+            console.error('Erro ao obter informações do usuário:', error);
+        });
+}
+
