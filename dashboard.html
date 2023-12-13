@@ -40,7 +40,7 @@
   ======================================================== -->
 </head>
 
-<body onload="obterInformacoesUsuario()">
+<body onload="visualizarLancamentos()">
 
   <!-- ======= Header ======= -->
   <header id="header" class="header fixed-top d-flex align-items-center">
@@ -257,7 +257,7 @@
             </li>
 
             <li>
-              <a class="dropdown-item d-flex align-items-center" href="#">
+              <a class="dropdown-item d-flex align-items-center" href="#" onclick="realizarLogoff()">
                 <i class="bi bi-box-arrow-right"></i>
                   <span onclick="realizarLogoff()">Sair</span>
               </a>
@@ -321,6 +321,14 @@
       </nav>
     </div><!-- End Page Title -->
 
+    <!-- 
+    ** Data da alteração: 13/12/2023
+    ** Motivo: Adicionar os dados do Fluxo de Caixa
+    ** Autor: Guilherme Alefe
+    ** Descrição: Alterei os ID de alguns h6 e de algumas divs
+    ** Validado por:
+    -->
+
     <section class="section dashboard">
       <div class="row">
 
@@ -340,7 +348,7 @@
                       <i class="bi bi-cart"></i>
                     </div>
                     <div class="ps-3">
-                      <h6>R$ 3.402,65</h6>
+                      <h6 id="saldoAtual">R$ 3.402,65</h6>
                       <span class="text-success small pt-1 fw-bold">12%</span> <span
                         class="text-muted small pt-2 ps-1">increase</span>
 
@@ -363,7 +371,7 @@
                       <i class="bi bi-currency-dollar"></i>
                     </div>
                     <div class="ps-3">
-                      <h6>R$ 3.648,32</h6>
+                      <h6 id="receitas">R$ 3.648,32</h6>
                       <span class="text-success small pt-1 fw-bold">8%</span> <span
                         class="text-muted small pt-2 ps-1">increase</span>
 
@@ -385,7 +393,7 @@
                       <i class="bi bi-currency-dollar"></i>
                     </div>
                     <div class="ps-3">
-                      <h6>R$ 1.247,78</h6>
+                      <h6 id="despesas">R$ 1.247,78</h6>
                       <span class="text-success small pt-1 fw-bold"><span class="text-danger">-3%</span></span>
                       <span class="text-muted small pt-2 ps-1"><span class="text-danger">decrease</span></span>
 
@@ -408,7 +416,7 @@
                       <i class="bi bi-currency-dollar"></i>
                     </div>
                     <div class="ps-3">
-                      <h6>R$ 2.635,12</h6>
+                      <h6 id="saldoInicial">R$ 2.635,12</h6>
                       <span class="text-success small pt-1 fw-bold">2%</span> <span
                         class="text-muted small pt-2 ps-1">increase</span>
 
@@ -431,7 +439,7 @@
                       <i class="bi bi-currency-dollar"></i>
                     </div>
                     <div class="ps-3">
-                      <h6>R$ 32.640,00</h6>
+                      <h6 id="saldoPrevisto">R$ 32.640,00</h6>
                     </div>
                   </div>
                 </div>
@@ -558,77 +566,77 @@
                         <tr>
                           <th scope="row">1</th>
                           <td>Receita Bruta</td>
-                          <td>R$ 2.145.000,00</td>
+                          <td id="receitaBruta">R$ 2.145.000,00</td>
                           <td>100%</td>
                           <td>10/12/2023</td>
                         </tr>
                         <tr>
                           <th scope="row">2</th>
-                          <td>Dedução de Receita</td>
-                          <td>-R$ 321.750,00</td>
+                          <td>Dedução da Receita</td>
+                          <td id="deducaoReceita">-R$ 321.750,00</td>
                           <td>10,80%</td>
                           <td>10/12/2023</td>
                         </tr>
                         <tr>
                           <th scope="row">3</th>
                           <td>Receita Líquida</td>
-                          <td>1.823.250,00</td>
+                          <td id="receitaLiquida">1.823.250,00</td>
                           <td>85%</td>
                           <td>10/12/2023</td>
                         </tr>
                         <tr>
                           <th scope="row">4</th>
                           <td>Custos</td>
-                          <td>-R$ 990.000,00</td>
+                          <td id="custos">-R$ 990.000,00</td>
                           <td>46,15%</td>
                           <td>10/12/2023</td>
                         </tr>
                         <tr>
                           <th scope="row">5</th>
                           <td>Resultado Bruto</td>
-                          <td>R$ 833.250,00</td>
+                          <td id="resultadoBruto">R$ 833.250,00</td>
                           <td>38,85%</td>
                           <td>10/12/2023</td>
                         </tr>
                         <tr>
                           <th scope="row">5</th>
                           <td>Despesas Operacionais</td>
-                          <td>-R$ 182.000,00</td>
+                          <td id="despesasOperacionais">-R$ 182.000,00</td>
                           <td>8,49%</td>
                           <td>10/12/2023</td>
                         </tr>
                         <tr>
                           <th scope="row">5</th>
                           <td>Resultado Financeiro</td>
-                          <td>R$ 215.000,00</td>
+                          <td id="resultadoFinanceiro">R$ 215.000,00</td>
                           <td>10,02%</td>
                           <td>10/12/2023</td>
                         </tr>
                         <tr>
                           <th scope="row">5</th>
-                          <td>Outras Receitas Receitas e Operacionais</td>
-                          <td>R$ 0,00</td>
+                          <td>Outras Receitas Operacionais</td>
+                          <td id="outrasReceitas">R$ 0,00</td>
                           <td>0,00%</td>
                           <td>10/12/2023</td>
                         </tr>
                         <tr>
                           <th scope="row">5</th>
                           <td>IRPJ e CSLL</td>
-                          <td>-R$ 66.000,00</td>
+                          <td id="irpjCSLL">-R$ 66.000,00</td>
                           <td>3,08%</td>
                           <td>10/12/2023</td>
                         </tr>
                         <tr>
                           <th scope="row">5</th>
                           <td>Participações</td>
-                          <td>-R$ 0,00</td>
+                          <td id="participacoes">-R$ 0,00</td>
                           <td>0,00%</td>
                           <td>10/12/2023</td>
                         </tr>
                         <tr>
                           <th scope="row">5</th>
                           <td><strong>Resultado Final do Exercício</strong></td>
-                          <td>R$ 370.250,00</td>
+                          <td id="resultadoFinal">R$ 370.250,00</td>
                           <td>17,26%</td>
                           <td>10/12/2023</td>
                         </tr>
@@ -909,6 +917,7 @@
   <!-- Template Main JS File -->
   <script src="assets/js/mainFunction.js"></script>
   <script src="assets/js/script-login.js"></script>
+  <script src="assets/js/fluxoCaixa.js"></script>
 
 </body>
 
