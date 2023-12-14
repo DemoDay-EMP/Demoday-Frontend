@@ -1,6 +1,6 @@
 function realizarLancamento() {
     console.log("Testando");
-    const cpf = 4564564
+    const cpf = 45645641
     const formLancamento = document.getElementById('transaction-form');
     
     // Use o FormData apenas se estiver lidando com um formulário que faz upload de arquivos.
@@ -48,7 +48,7 @@ function realizarLancamento() {
   }
 
 function visualizarDRE() {
-    const cpf = 4564564;
+    const cpf = 45645641;
 
     fetch(`http://localhost:8091/transaction/cpf/${cpf}`, {
         method: 'GET',
@@ -120,7 +120,6 @@ function visualizarDRE() {
                 elementoSaldoInicial.innerText = "R$ " + saldoInicialFormatado;
 
                 // ----- SALDO PREVISTO ----- \\
-                // ----- SALDO INICIAL ----- \\
                 const saldoPrevistoReceita = data.filter(transaction => transaction.tipo_conta === 'Receita');
                 const saldoPrevistoDespesa = data.filter(transaction => transaction.tipo_conta === 'Despesa');
                 // Soma os valores das transações filtradas
@@ -261,7 +260,7 @@ const tabela = new simpleDatatables.DataTable('.datatable', {
 });
 
 function visualizarLancamentos() {
-    const cpf = 4564564;
+    const cpf = 45645641;
 
     fetch(`http://localhost:8091/transaction/cpf/${cpf}`, {
         method: 'GET',
@@ -294,7 +293,7 @@ function visualizarLancamentos() {
                     cellTipoConta.innerText = result.tipo_conta; // Substitua 'tipoConta' pelo nome real do atributo
                     cellObservacoes.innerText = result.observacao; // Substitua 'observacoes' pelo nome real do atributo
                     cellData.innerText = result.data_lancamento; // Substitua 'data' pelo nome real do atributo
-                    cellValor.innerText = result.valor; // Substitua 'valor' pelo nome real do atributo
+                    cellValor.innerText = 'R$ ' + result.valor; // Substitua 'valor' pelo nome real do atributo
                 });
 
                 tabela.init(); // Reinicialize a tabela com os novos dados
