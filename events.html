@@ -55,50 +55,42 @@
               <p class="text-center subtitulo">Insera seus dados para criar a conta</p>
 
               <!-- Vertical Form -->
-              <form class="row estilo-forms">
+              <form class="row estilo-forms" action="#" id="registration-form" enctype="multipart/form-data">
 
-                <div class="col-md-6">
-                  <label for="inputState" class="form-label">Tipo de cadastro</label>
-                  <select id="inputState" class="form-select" onchange="toggleFields()">
-                      <option selected>Pessoa Física</option>
-                      <option>Pessoa Jurídica</option>
-                  </select>
+                <div class="col-md-6" id="cpfField">
+                  <label for="inputPassword5" class="form-label">CNPJ</label>
+                  <input type="text" class="form-control" id="cnpj">
                 </div>
               
                 <div class="col-md-6" id="cpfField">
                   <label for="inputPassword5" class="form-label">CPF</label>
                   <input type="text" class="form-control" id="cpf">
                 </div>
-              
-                <div class="col-md-6" id="cnpjField" style="display: none;">
-                  <label for="inputPassword5" class="form-label">CNPJ</label>
-                  <input type="text" class="form-control" id="cnpj">
-                </div>
 
 
                 <div class="col-md-12">
                   <label for="inputNanme4" class="form-label">Nome completo</label>
-                  <input type="text" class="form-control" id="nome-completo" required>
+                  <input type="text" class="form-control" id="nome" required>
                 </div>
 
                 <div class="col-md-6">
                   <label for="inputDate" class="col-sm-12 col-form-label">Data de nascimento</label>
-                  <input type="date" class="form-control" id="data-nasc" required>
+                  <input type="text" class="form-control" id="dataNascimento" required>
                 </div>
 
                 <div class="col-md-6">
                   <label for="inputPassword5" class="col-sm-12 col-form-label">Telefone</label>
-                  <input type="password" class="form-control" id="telefone" pattern="[0-9]{2}[0-9]{5}[0-9]{4}" required>
+                  <input type="text" class="form-control" id="telefone" pattern="[0-9]{2}[0-9]{5}[0-9]{4}" required>
                 </div>
 
                 <div class="col-md-6">
                   <label for="inputPassword5" class="col-sm-12 col-form-label">CEP</label>
-                  <input type="password" class="form-control" id="cep" required>
+                  <input type="text" class="form-control" id="cep">
                 </div>
 
                 <div class="col-md-6">
                   <label for="inputPassword5" class="col-sm-12 col-form-label">Cidade</label>
-                  <input type="password" class="form-control" id="cidade" required>
+                  <input type="text" class="form-control" id="cidade">
                 </div>
 
                 <div class="col-12">
@@ -114,7 +106,7 @@
                 </div>
 
                 <div class="text-center">
-                  <button type="submit" class="btn btn-primary botao-cadastro">Criar conta</button>
+                  <button type="button" class="btn btn-primary botao-cadastro" onclick="cadastrarUsuario()">Criar conta</button>
                 </div>
 
               </form><!-- Vertical Form -->
@@ -187,6 +179,8 @@
       }
     }
   </script>
+
+<script src="assets/js/script-login.js"></script>
 
 </body>
 
