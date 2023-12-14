@@ -83,10 +83,18 @@
                   <input type="text" class="form-control" id="telefone" pattern="[0-9]{2}[0-9]{5}[0-9]{4}" required>
                 </div>
 
+                <!-- <div class="col-md-6">
+                  <label for="inputPassword5" class="col-sm-12 col-form-label">CEP</label>
+                  <input type="text" class="form-control" id="cep" oninput="consultaEndereco()">
+                </div> -->
+
                 <div class="col-md-6">
                   <label for="inputPassword5" class="col-sm-12 col-form-label">CEP</label>
-                  <input type="text" class="form-control" id="cep">
-                </div>
+                  <input type="text" class="form-control" id="cep" oninput="consultaEndereco()">
+                  <div id="cep-error" style="color: red;"></div>
+              </div>
+              
+              <!-- <div id="resultado">Aqui o seu resultado</div> -->
 
                 <div class="col-md-6">
                   <label for="inputPassword5" class="col-sm-12 col-form-label">Cidade</label>
@@ -179,6 +187,39 @@
       }
     }
   </script>
+
+
+  <!-- API via cep -->
+<script>
+  function consultaEndereco() {
+      let cep = document.querySelector("#cep").value;
+      let cepError = document.querySelector("#cep-error");
+      let cidadeInput = document.querySelector('#cidade');
+      let enderecoInput = document.querySelector('#endereço');
+
+      if (cep.length === 8) {
+          let url = `https://viacep.com.br/ws/${cep}/json/`;
+
+          fetch(url).then(function (response) {
+              response.json().then(function(dados) {
+                  if (dados.erro) {
+                      cepError.innerHTML = "CEP inválido";
+                      cidadeInput.value = ""; // Limpar campo cidade
+                      enderecoInput.value = ""; // Limpar campo endereço
+                  } else {
+                      cepError.innerHTML = ""; // Limpar mensagem de erro se o CEP for válido
+                      cidadeInput.value = dados.localidade;
+                      enderecoInput.value = dados.logradouro;
+                  }
+              });
+          });
+      } else {
+          cepError.innerHTML = ""; // Limpar mensagem de erro se o CEP for válido
+          cidadeInput.value = ""; // Limpar campo cidade
+          enderecoInput.value = ""; // Limpar campo endereço
+      }
+  }
+</script>
 
 <script src="assets/js/script-login.js"></script>
 
