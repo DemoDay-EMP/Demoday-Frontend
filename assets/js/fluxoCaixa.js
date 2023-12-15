@@ -1,16 +1,20 @@
 function realizarLancamento() {
     console.log("Testando");
-    const cpf = 45645641
+    const cpf = localStorage.getItem('cpf');
     const formLancamento = document.getElementById('transaction-form');
     
     // Use o FormData apenas se estiver lidando com um formulário que faz upload de arquivos.
     // Se não, você pode criar um objeto diretamente.
     const formDataCadastroUsuario = new FormData(formLancamento);
+
+    const valorInput = formLancamento.valor.value;
+  
+    const valor = valorInput.replace(',', '.');
   
     // Obtendo valores diretamente do formulário
     const data = {
         cpf: cpf,
-        valor: formLancamento.valor.value,
+        valor: valor,
         tipo_conta: formLancamento.tipoConta.value,
         data_lancamento: formLancamento.dataLancamento.value,
         tipo_lancamento: formLancamento.tipoLancamento.value,
@@ -38,7 +42,7 @@ function realizarLancamento() {
         return response.json();
     })
     .then(data => {
-        // window.location.href = 'index.html';
+        window.location.href = 'dashboard.html';
     })
     .catch(error => {
         console.error('Erro:', error);
@@ -48,7 +52,8 @@ function realizarLancamento() {
   }
 
 function visualizarDRE() {
-    const cpf = 45645641;
+    const cpf = localStorage.getItem('cpf');
+    console.log('cpf', cpf)
 
     fetch(`http://localhost:8091/transaction/cpf/${cpf}`, {
         method: 'GET',
@@ -144,7 +149,7 @@ function visualizarDRE() {
 
                 // ----- DEDUÇÕES DA RECEITA ----- \\
                 // Filtra as transações com tipo "Venda de produto"
-                const deducoesReceita = data.filter(transaction => transaction.tipo_lancamento === 'ICMS');
+                const deducoesReceita = data.filter(transaction => transaction.tipo_lancamento === 'ICMS' || transaction.tipo_lancamento === 'PIS' || transaction.tipo_lancamento === 'COFINS' || transaction.tipo_lancamento === 'IPI');
                 // Soma os valores das transações filtradas
                 const totalDeducoesReceita = deducoesReceita.reduce((total, transaction) => total + transaction.valor, 0);
                 // Formata o dado para utilizar duas casas decimais e "," ao invés de "."
@@ -176,7 +181,7 @@ function visualizarDRE() {
                 elementoResultadoBruto.innerText = "R$ " + resultadoBrutoFormatado;
 
                 // ----- DESPESAS OPERACIONAIS ----- \\ Trocar o "tipo_lancamento === 'colocar valores'"
-                const despesasOperacionais = data.filter(transaction => transaction.tipo_lancamento === 'custos');
+                const despesasOperacionais = data.filter(transaction => transaction.tipo_lancamento === 'Água' || transaction.tipo_lancamento === 'Aluguel' || transaction.tipo_lancamento === 'Condomínio' || transaction.tipo_lancamento === 'FGTS' || transaction.tipo_lancamento === 'INSS' || transaction.tipo_lancamento === 'Luz' || transaction.tipo_lancamento === 'Internet' || transaction.tipo_lancamento === 'Material de escritório' || transaction.tipo_lancamento === 'Material de consumo' || transaction.tipo_lancamento === 'Salário');
                 // Soma os valores das transações filtradas
                 const totalDespesasOperacionais = despesasOperacionais.reduce((total, transaction) => total + transaction.valor, 0);
                 // Formata o dado para utilizar duas casas decimais e "," ao invés de "."
@@ -185,16 +190,23 @@ function visualizarDRE() {
                 elementoDespesasOperacionais.innerText = "R$ " + despesasOperacionaisFormatado;
 
                 // ----- RESULTADO FINANCEIRO ----- \\ Trocar o "tipo_lancamento === 
-                const resultadoFinanceiro = data.filter(transaction => transaction.tipo_lancamento === 'custos');
+                const resultadoFinanceiroReceita = data.filter(transaction => transaction.tipo_lancamento === 'Rendimento financeiro');
+                
+                const totalResultadoFinanceiroReceita = resultadoFinanceiroReceita.reduce((total, transaction) => total + transaction.valor, 0);
+
+                const resultadoFinanceiroDespesa = data.filter(transaction => transaction.tipo_lancamento === 'Tarifas Bancárias' || transaction.tipo_lancamento === 'Juros e multas');
+
+                const totalResultadoFinanceiroDespesa = resultadoFinanceiroDespesa.reduce((total, transaction) => total + transaction.valor, 0);
+
                 // Soma os valores das transações filtradas
-                const totalResultadoFinanceiro = resultadoFinanceiro.reduce((total, transaction) => total + transaction.valor, 0);
+                const totalResultadoFinanceiro = totalResultadoFinanceiroReceita - totalResultadoFinanceiroDespesa;
                 // Formata o dado para utilizar duas casas decimais e "," ao invés de "."
                 const resultadoFinanceiroFormatado = totalResultadoFinanceiro.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
                 // Exibe o total na página
                 elementoResultadoFinanceiro.innerText = "R$ " + resultadoFinanceiroFormatado;
 
                 // ----- OUTRAS RECEITAS ----- \\ Trocar o "tipo_lancamento === 
-                const outrasReceitas = data.filter(transaction => transaction.tipo_lancamento === 'custos');
+                const outrasReceitas = data.filter(transaction => transaction.tipo_lancamento === 'Outras Receitas');
                 // Soma os valores das transações filtradas
                 const totalOutrasReceitas = outrasReceitas.reduce((total, transaction) => total + transaction.valor, 0);
                 // Formata o dado para utilizar duas casas decimais e "," ao invés de "."
@@ -202,22 +214,26 @@ function visualizarDRE() {
                 // Exibe o total na página
                 elementoOutrasReceitas.innerText = "R$ " + outrasReceitasFormatado;
 
-                // ----- IRPJ E CSLL ----- \\ Trocar o "tipo_lancamento === 
-                const irpjCSLL = data.filter(transaction => transaction.tipo_lancamento === 'custos');
-                // Soma os valores das transações filtradas
-                const totalIrpjCSLL = irpjCSLL.reduce((total, transaction) => total + transaction.valor, 0);
-                // Formata o dado para utilizar duas casas decimais e "," ao invés de "."
-                const irpjCSLLFormatado = totalIrpjCSLL.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-                // Exibe o total na página
+                // ----- IRPJ E CSLL ----- \\ Não há opção no modal ainda 
+                // const irpjCSLL = data.filter(transaction => transaction.tipo_lancamento === 'custos');
+                // // Soma os valores das transações filtradas
+                // const totalIrpjCSLL = irpjCSLL.reduce((total, transaction) => total + transaction.valor, 0);
+                // // Formata o dado para utilizar duas casas decimais e "," ao invés de "."
+                // const irpjCSLLFormatado = totalIrpjCSLL.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+                // // Exibe o total na página
+                const totalIrpjCSLL = 0;
+                const irpjCSLLFormatado = "0,00"; // Apagar ao arrumar modal
                 elementoIrpjCSLL.innerText = "R$ " + irpjCSLLFormatado;
 
-                // ----- PARTICIPAÇÕES ----- \\ Trocar o "tipo_lancamento === 
-                const participacoes = data.filter(transaction => transaction.tipo_lancamento === 'custos');
-                // Soma os valores das transações filtradas
-                const totalParticipacoes = participacoes.reduce((total, transaction) => total + transaction.valor, 0);
-                // Formata o dado para utilizar duas casas decimais e "," ao invés de "."
-                const participacoesFormatado = totalParticipacoes.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-                // Exibe o total na página
+                // ----- PARTICIPAÇÕES ----- \\ Não há opção no modal ainda 
+                // const participacoes = data.filter(transaction => transaction.tipo_lancamento === 'custos');
+                // // Soma os valores das transações filtradas
+                // const totalParticipacoes = participacoes.reduce((total, transaction) => total + transaction.valor, 0);
+                // // Formata o dado para utilizar duas casas decimais e "," ao invés de "."
+                // const participacoesFormatado = totalParticipacoes.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+                // // Exibe o total na página
+                const totalParticipacoes = 0;
+                const participacoesFormatado = "0,00"; // Apagar ao arrumar modal
                 elementoParticipacoes.innerText = "R$ " + participacoesFormatado;
 
                 // ----- RESULTADO FINAL DO EXERCÍCIO ----- \\ Trocar o "tipo_lancamento === 
@@ -260,7 +276,7 @@ const tabela = new simpleDatatables.DataTable('.datatable', {
 });
 
 function visualizarLancamentos() {
-    const cpf = 45645641;
+    const cpf = localStorage.getItem('cpf');
 
     fetch(`http://localhost:8091/transaction/cpf/${cpf}`, {
         method: 'GET',
@@ -289,11 +305,11 @@ function visualizarLancamentos() {
                     const cellValor = novaLinha.insertCell(4);
 
                     // Preencher as células com os valores do resultado
-                    cellNome.innerText = result.tipo_lancamento; // Substitua 'nome' pelo nome real do atributo
-                    cellTipoConta.innerText = result.tipo_conta; // Substitua 'tipoConta' pelo nome real do atributo
-                    cellObservacoes.innerText = result.observacao; // Substitua 'observacoes' pelo nome real do atributo
-                    cellData.innerText = result.data_lancamento; // Substitua 'data' pelo nome real do atributo
-                    cellValor.innerText = 'R$ ' + result.valor; // Substitua 'valor' pelo nome real do atributo
+                    cellNome.innerText = result.tipo_lancamento;
+                    cellTipoConta.innerText = result.tipo_conta;
+                    cellObservacoes.innerText = result.observacao;
+                    cellData.innerText = result.data_lancamento;
+                    cellValor.innerText = 'R$ ' + result.valor;
                 });
 
                 tabela.init(); // Reinicialize a tabela com os novos dados

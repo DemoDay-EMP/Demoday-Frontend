@@ -84,6 +84,7 @@ function cadastrarUsuario() {
 function realizarLogoff() {
   localStorage.removeItem('email');
   localStorage.removeItem('senha');
+  localStorage.removeItem('cpf');
   
   window.location.href = 'index.html';
 }
@@ -158,6 +159,9 @@ function obterInformacoesUsuario() {
             return response.json();
         })
         .then(data => {
+            cpfDoUsuario = data.cpf;
+            console.log('cpf', cpfDoUsuario);
+            localStorage.setItem('cpf', cpfDoUsuario);
             const nomeElementos = document.querySelectorAll('.nomeElement');
             const emailElementos = document.querySelectorAll('.emailElement');
 
