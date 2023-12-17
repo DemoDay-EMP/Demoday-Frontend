@@ -40,7 +40,7 @@
   ======================================================== -->
 </head>
 
-<body onload="obterInformacoesUsuario(); visualizarDRE()">
+<body onload="obterInformacoesUsuario() ">
 
   <!-- ======= Header ======= -->
   <header id="header" class="header fixed-top d-flex align-items-center">
@@ -259,7 +259,7 @@
             <li>
               <a class="dropdown-item d-flex align-items-center" href="#" onclick="realizarLogoff()">
                 <i class="bi bi-box-arrow-right"></i>
-                  <span onclick="realizarLogoff()">Sair</span>
+                <span onclick="realizarLogoff()">Sair</span>
               </a>
             </li>
 
@@ -295,26 +295,26 @@
           <i class="bi bi-card-list"></i><span>Networking</span></i>
         </a>
 
-        <li class="nav-item">
-          <a class="nav-link collapsed" href="users-profile.html">
-            <i class="bi bi-person"></i>
-            <span>Perfil</span>
-          </a>
-        </li><!-- End Profile Page Nav -->
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="users-profile.html">
+          <i class="bi bi-person"></i>
+          <span>Perfil</span>
+        </a>
+      </li><!-- End Profile Page Nav -->
 
-        <li class="nav-item">
-          <a class="nav-link collapsed" href="pages-faq.html">
-            <i class="bi bi-question-circle"></i>
-            <span>Perguntas Frequentes</span>
-          </a>
-        </li><!-- End F.A.Q Page Nav -->
-        
-        <li class="nav-item">
-          <a class="nav-link collapsed" href="pages-contact.html">
-            <i class="bi bi-envelope"></i>
-            <span>Contato</span>
-          </a>
-        </li><!-- End Contact Page Nav -->
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="pages-faq.html">
+          <i class="bi bi-question-circle"></i>
+          <span>Perguntas Frequentes</span>
+        </a>
+      </li><!-- End F.A.Q Page Nav -->
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="pages-contact.html">
+          <i class="bi bi-envelope"></i>
+          <span>Contato</span>
+        </a>
+      </li><!-- End Contact Page Nav -->
 
   </aside><!-- End Sidebar-->
 
@@ -458,12 +458,14 @@
 
             <div class="card-body">
               <!-- Basic Modal Button -->
-              <button type="button" class="btn btn-primary text-center" data-bs-toggle="modal" data-bs-target="#basicModal">
+              <button type="button" class="btn btn-primary text-center" data-bs-toggle="modal"
+                data-bs-target="#basicModal">
                 Adicionar lançamento
               </button>
-            
+
               <!-- Modal -->
-              <div class="modal fade" id="basicModal" tabindex="-1" aria-labelledby="basicModalLabel" aria-hidden="true">
+              <div class="modal fade" id="basicModal" tabindex="-1" aria-labelledby="basicModalLabel"
+                aria-hidden="true">
                 <div class="modal-dialog">
                   <div class="modal-content">
                     <div class="modal-header">
@@ -547,7 +549,7 @@
                 </div>
               </div>
             </div>
-            
+
 
 
             <!-- Reports -->
@@ -574,56 +576,102 @@
                   <div id="reportsChart"></div>
 
                   <script>
-                    document.addEventListener("DOMContentLoaded", () => {
-                      new ApexCharts(document.querySelector("#reportsChart"), {
-                        series: [{
-                          name: 'Sales',
-                          data: [31, 40, 28, 51, 42, 82, 56],
-                        }, {
-                          name: 'Revenue',
-                          data: [11, 32, 45, 32, 34, 52, 41]
-                        }, {
-                          name: 'Customers',
-                          data: [15, 11, 32, 18, 9, 24, 11]
-                        }],
-                        chart: {
-                          height: 350,
-                          type: 'area',
-                          toolbar: {
-                            show: false
-                          },
-                        },
-                        markers: {
-                          size: 4
-                        },
-                        colors: ['#4154f1', '#2eca6a', '#ff771d'],
-                        fill: {
-                          type: "gradient",
-                          gradient: {
-                            shadeIntensity: 1,
-                            opacityFrom: 0.3,
-                            opacityTo: 0.4,
-                            stops: [0, 90, 100]
+                    const cpf = localStorage.getItem('cpf');
+                    console.log('cpf nos gráficos', cpf);
+
+                    fetch(`http://localhost:8091/transaction/cpf/${cpf}`, {
+                      method: 'GET',
+                    })
+                      .then(response => {
+                        console.log('Status da resposta do fetch:', response.status);
+                        return response.json();
+                      })
+                      .then(data => {
+                        if (data.length > 0) {
+                          console.log('Gráfico', data);
+                          const receitas = data.filter(transaction => transaction.tipo_conta === 'Receita');
+                          const despesas = data.filter(transaction => transaction.tipo_conta === 'Despesa');
+
+                          // Ordenar receitas e despesas por data
+                          const receitasOrdenadas = receitas.sort((a, b) => new Date(a.data_lancamento) - new Date(b.data_lancamento));
+                          const despesasOrdenadas = despesas.sort((a, b) => new Date(a.data_lancamento) - new Date(b.data_lancamento));
+
+                          // Extrair valores e datas para receitas
+                          const valoresReceitas = receitasOrdenadas.map(receita => receita.valor);
+                          const datasReceitas = receitasOrdenadas.map(receita => new Date(receita.data_lancamento).toISOString());
+
+                          // Extrair valores e datas para despesas
+                          const valoresDespesas = despesasOrdenadas.map(despesa => despesa.valor);
+                          const datasDespesas = despesasOrdenadas.map(despesa => new Date(despesa.data_lancamento).toISOString());
+
+                          const datasCompletas = [];
+                          const dataAtual = new Date('2023-12-01');
+                          const dataFinal = new Date('2023-12-31');
+                          console.log('Gráfico2', data);
+                          while (dataAtual <= dataFinal) {
+                            datasCompletas.push(dataAtual.toISOString());
+                            dataAtual.setDate(dataAtual.getDate() + 1);
                           }
-                        },
-                        dataLabels: {
-                          enabled: false
-                        },
-                        stroke: {
-                          curve: 'smooth',
-                          width: 2
-                        },
-                        xaxis: {
-                          type: 'datetime',
-                          categories: ["2018-09-19T00:00:00.000Z", "2018-09-19T01:30:00.000Z", "2018-09-19T02:30:00.000Z", "2018-09-19T03:30:00.000Z", "2018-09-19T04:30:00.000Z", "2018-09-19T05:30:00.000Z", "2018-09-19T06:30:00.000Z"]
-                        },
-                        tooltip: {
-                          x: {
-                            format: 'dd/MM/yy HH:mm'
-                          },
+
+                          document.addEventListener("DOMContentLoaded", () => {
+                            new ApexCharts(document.querySelector("#reportsChart"), {
+                              series: [{
+                                name: 'Receitas',
+                                data: valoresReceitas,
+                              }, {
+                                name: 'Despesas',
+                                data: valoresDespesas
+                              }],
+                              chart: {
+                                height: 350,
+                                type: 'area',
+                                toolbar: {
+                                  show: false
+                                },
+                              },
+                              markers: {
+                                size: 4
+                              },
+                              colors: ['#4154f1', '#ff771d'],
+                              fill: {
+                                type: "gradient",
+                                gradient: {
+                                  shadeIntensity: 1,
+                                  opacityFrom: 0.3,
+                                  opacityTo: 0.4,
+                                  stops: [0, 90, 100]
+                                }
+                              },
+                              dataLabels: {
+                                enabled: false
+                              },
+                              stroke: {
+                                curve: 'smooth',
+                                width: 2
+                              },
+                              xaxis: {
+                                type: 'datetime',
+                                categories: datasCompletas,
+                              },
+                              tooltip: {
+                                x: {
+                                  format: 'dd/MM/yy'
+                                },
+                              }
+                            }).render();
+                          });
+                        } else {
+                          elemento.innerText = 0;
+                          elementoReceitaBruta.innerText = 0;
+                          elementoDeducoesReceita.innerText = 0;
+                          elementoReceitaLiquida.innerText = 0;
+                          console.error('Elemento com classe "nomeElement" não encontrado.');
                         }
-                      }).render();
-                    });
+                      })
+                      .catch(error => {
+                        console.error('Erro ao obter informações do usuário:', error);
+                      });
+
                   </script>
                   <!-- End Line Chart -->
 
@@ -655,95 +703,95 @@
                   <h5 class="card-title">DRE <span>| Exercício</span></h5>
 
                   <table class="table table-borderless">
-                      <thead>
-                        <tr>
-                          <th scope="col">#</th>
-                          <th scope="col">Transação</th>
-                          <th scope="col">Valor</th>
-                          <th scope="col">Percentual</th>
-                          <th scope="col">Atualização</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr>
-                          <th scope="row">1</th>
-                          <td>Receita Bruta</td>
-                          <td id="receitaBruta">R$ 2.145.000,00</td>
-                          <td>100%</td>
-                          <td>10/12/2023</td>
-                        </tr>
-                        <tr>
-                          <th scope="row">2</th>
-                          <td>Dedução da Receita</td>
-                          <td id="deducaoReceita">-R$ 321.750,00</td>
-                          <td>10,80%</td>
-                          <td>10/12/2023</td>
-                        </tr>
-                        <tr>
-                          <th scope="row">3</th>
-                          <td>Receita Líquida</td>
-                          <td id="receitaLiquida">1.823.250,00</td>
-                          <td>85%</td>
-                          <td>10/12/2023</td>
-                        </tr>
-                        <tr>
-                          <th scope="row">4</th>
-                          <td>Custos</td>
-                          <td id="custos">-R$ 990.000,00</td>
-                          <td>46,15%</td>
-                          <td>10/12/2023</td>
-                        </tr>
-                        <tr>
-                          <th scope="row">5</th>
-                          <td>Resultado Bruto</td>
-                          <td id="resultadoBruto">R$ 833.250,00</td>
-                          <td>38,85%</td>
-                          <td>10/12/2023</td>
-                        </tr>
-                        <tr>
-                          <th scope="row">5</th>
-                          <td>Despesas Operacionais</td>
-                          <td id="despesasOperacionais">-R$ 182.000,00</td>
-                          <td>8,49%</td>
-                          <td>10/12/2023</td>
-                        </tr>
-                        <tr>
-                          <th scope="row">5</th>
-                          <td>Resultado Financeiro</td>
-                          <td id="resultadoFinanceiro">R$ 215.000,00</td>
-                          <td>10,02%</td>
-                          <td>10/12/2023</td>
-                        </tr>
-                        <tr>
-                          <th scope="row">5</th>
-                          <td>Outras Receitas Operacionais</td>
-                          <td id="outrasReceitas">R$ 0,00</td>
-                          <td>0,00%</td>
-                          <td>10/12/2023</td>
-                        </tr>
-                        <tr>
-                          <th scope="row">5</th>
-                          <td>IRPJ e CSLL</td>
-                          <td id="irpjCSLL">-R$ 66.000,00</td>
-                          <td>3,08%</td>
-                          <td>10/12/2023</td>
-                        </tr>
-                        <tr>
-                          <th scope="row">5</th>
-                          <td>Participações</td>
-                          <td id="participacoes">-R$ 0,00</td>
-                          <td>0,00%</td>
-                          <td>10/12/2023</td>
-                        </tr>
-                        <tr>
-                          <th scope="row">5</th>
-                          <td><strong>Resultado Final do Exercício</strong></td>
-                          <td id="resultadoFinal">R$ 370.250,00</td>
-                          <td>17,26%</td>
-                          <td>10/12/2023</td>
-                        </tr>
-                      </tbody>
-                    </table>
+                    <thead>
+                      <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Transação</th>
+                        <th scope="col">Valor</th>
+                        <th scope="col">Percentual</th>
+                        <th scope="col">Atualização</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <th scope="row">1</th>
+                        <td>Receita Bruta</td>
+                        <td id="receitaBruta">R$ 2.145.000,00</td>
+                        <td>100%</td>
+                        <td>10/12/2023</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">2</th>
+                        <td>Dedução da Receita</td>
+                        <td id="deducaoReceita">-R$ 321.750,00</td>
+                        <td>10,80%</td>
+                        <td>10/12/2023</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">3</th>
+                        <td>Receita Líquida</td>
+                        <td id="receitaLiquida">1.823.250,00</td>
+                        <td>85%</td>
+                        <td>10/12/2023</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">4</th>
+                        <td>Custos</td>
+                        <td id="custos">-R$ 990.000,00</td>
+                        <td>46,15%</td>
+                        <td>10/12/2023</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">5</th>
+                        <td>Resultado Bruto</td>
+                        <td id="resultadoBruto">R$ 833.250,00</td>
+                        <td>38,85%</td>
+                        <td>10/12/2023</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">5</th>
+                        <td>Despesas Operacionais</td>
+                        <td id="despesasOperacionais">-R$ 182.000,00</td>
+                        <td>8,49%</td>
+                        <td>10/12/2023</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">5</th>
+                        <td>Resultado Financeiro</td>
+                        <td id="resultadoFinanceiro">R$ 215.000,00</td>
+                        <td>10,02%</td>
+                        <td>10/12/2023</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">5</th>
+                        <td>Outras Receitas Operacionais</td>
+                        <td id="outrasReceitas">R$ 0,00</td>
+                        <td>0,00%</td>
+                        <td>10/12/2023</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">5</th>
+                        <td>IRPJ e CSLL</td>
+                        <td id="irpjCSLL">-R$ 66.000,00</td>
+                        <td>3,08%</td>
+                        <td>10/12/2023</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">5</th>
+                        <td>Participações</td>
+                        <td id="participacoes">-R$ 0,00</td>
+                        <td>0,00%</td>
+                        <td>10/12/2023</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">5</th>
+                        <td><strong>Resultado Final do Exercício</strong></td>
+                        <td id="resultadoFinal">R$ 370.250,00</td>
+                        <td>17,26%</td>
+                        <td>10/12/2023</td>
+                      </tr>
+                    </tbody>
+                  </table>
 
                 </div>
 
@@ -925,58 +973,87 @@
               <div id="trafficChart" style="min-height: 400px;" class="echart"></div>
 
               <script>
-                document.addEventListener("DOMContentLoaded", () => {
-                  echarts.init(document.querySelector("#trafficChart")).setOption({
-                    tooltip: {
-                      trigger: 'item'
-                    },
-                    legend: {
-                      top: '5%',
-                      left: 'center'
-                    },
-                    series: [{
-                      name: 'Access From',
-                      type: 'pie',
-                      radius: ['40%', '70%'],
-                      avoidLabelOverlap: false,
-                      label: {
-                        show: false,
-                        position: 'center'
-                      },
-                      emphasis: {
-                        label: {
-                          show: true,
-                          fontSize: '18',
-                          fontWeight: 'bold'
-                        }
-                      },
-                      labelLine: {
-                        show: false
-                      },
-                      data: [{
-                        value: 1048,
-                        name: 'Search Engine'
-                      },
-                      {
-                        value: 735,
-                        name: 'Direct'
-                      },
-                      {
-                        value: 580,
-                        name: 'Email'
-                      },
-                      {
-                        value: 484,
-                        name: 'Union Ads'
-                      },
-                      {
-                        value: 300,
-                        name: 'Video Ads'
-                      }
-                      ]
-                    }]
+                console.log('cpf', cpf);
+
+                fetch(`http://localhost:8091/transaction/cpf/${cpf}`, {
+                  method: 'GET',
+                })
+                  .then(response => {
+                    console.log('Status da resposta do fetch:', response.status);
+                    return response.json();
+                  })
+                  .then(data => {
+                    if (data.length > 0) {
+                      const receitas = data.filter(transaction => transaction.tipo_conta === 'Receita');
+                      const totalReceita = receitas.reduce((total, transaction) => total + transaction.valor, 0);
+
+                      const despesas = data.filter(transaction => transaction.tipo_conta === 'Despesa');
+                      const totalDespesa = despesas.reduce((total, transaction) => total + transaction.valor, 0);
+
+                      const resultadoFinanceiroReceita = data.filter(transaction => transaction.tipo_lancamento === 'Rendimento financeiro');
+                      const totalResultadoFinanceiroReceita = resultadoFinanceiroReceita.reduce((total, transaction) => total + transaction.valor, 0);
+                      const resultadoFinanceiroDespesa = data.filter(transaction => transaction.tipo_lancamento === 'Tarifas Bancárias' || transaction.tipo_lancamento === 'Juros e multas');
+                      const totalResultadoFinanceiroDespesa = resultadoFinanceiroDespesa.reduce((total, transaction) => total + transaction.valor, 0);
+                      const totalResultadoFinanceiro = totalResultadoFinanceiroReceita - totalResultadoFinanceiroDespesa;
+                      const elementoResultadoFinal = document.getElementById('resultadoFinal');
+
+
+                      document.addEventListener("DOMContentLoaded", () => {
+                        echarts.init(document.querySelector("#trafficChart")).setOption({
+                          tooltip: {
+                            trigger: 'item'
+                          },
+                          legend: {
+                            top: '5%',
+                            left: 'center'
+                          },
+                          series: [{
+                            name: 'Access From',
+                            type: 'pie',
+                            radius: ['40%', '70%'],
+                            avoidLabelOverlap: false,
+                            label: {
+                              show: false,
+                              position: 'center'
+                            },
+                            emphasis: {
+                              label: {
+                                show: true,
+                                fontSize: '18',
+                                fontWeight: 'bold'
+                              }
+                            },
+                            labelLine: {
+                              show: false
+                            },
+                            data: [{
+                              value: totalReceita,
+                              name: 'Receita Bruta'
+                            },
+                            {
+                              value: totalDespesa,
+                              name: 'Deduções da Receita'
+                            },
+                            {
+                              value: elementoResultadoFinal,
+                              name: 'Resultado Financeiro'
+                            },
+                            ]
+                          }]
+                        });
+                      });
+                    } else {
+                      elemento.innerText = 0;
+                      elementoReceitaBruta.innerText = 0;
+                      elementoDeducoesReceita.innerText = 0;
+                      elementoReceitaLiquida.innerText = 0;
+                      console.error('Elemento com classe "nomeElement" não encontrado.');
+                    }
+                  })
+                  .catch(error => {
+                    console.error('Erro ao obter informações do usuário:', error);
                   });
-                });
+
               </script>
 
             </div>
@@ -1018,9 +1095,11 @@
   <script src="assets/vendor/php-email-form/validate.js"></script>
 
   <!-- Template Main JS File -->
+  
+  <script src="assets/js/fluxoCaixa.js"></script>
   <script src="assets/js/mainFunction.js"></script>
   <script src="assets/js/script-login.js"></script>
-  <script src="assets/js/fluxoCaixa.js"></script>
+  
 
 </body>
 

@@ -2,15 +2,15 @@ function realizarLancamento() {
     console.log("Testando");
     const cpf = localStorage.getItem('cpf');
     const formLancamento = document.getElementById('transaction-form');
-    
+
     // Use o FormData apenas se estiver lidando com um formulário que faz upload de arquivos.
     // Se não, você pode criar um objeto diretamente.
     const formDataCadastroUsuario = new FormData(formLancamento);
 
     const valorInput = formLancamento.valor.value;
-  
+
     const valor = valorInput.replace(',', '.');
-  
+
     // Obtendo valores diretamente do formulário
     const data = {
         cpf: cpf,
@@ -23,9 +23,9 @@ function realizarLancamento() {
         observacao: formLancamento.observacao.value,
         // status_lancamento: formLancamento.pagamentoRealizado.value,
     };
-  
+
     console.log(data, "Testando");
-  
+
     fetch('http://localhost:8091/transaction/create', {
         method: 'POST',
         headers: {
@@ -33,27 +33,27 @@ function realizarLancamento() {
         },
         body: JSON.stringify(data),
     })
-    .then(response => {
-        if (!response.ok) {
-            return response.json().then(data => {
-                throw new Error(data.message);
-            });
-        }
-        return response.json();
-    })
-    .then(data => {
-        window.location.href = 'dashboard.html';
-    })
-    .catch(error => {
-        console.error('Erro:', error);
-        exibirMensagemDeErroCadastro(error.message);
-        console.log(data, "Não Funcionou");
-    });
-  }
+        .then(response => {
+            if (!response.ok) {
+                return response.json().then(data => {
+                    throw new Error(data.message);
+                });
+            }
+            return response.json();
+        })
+        .then(data => {
+            window.location.href = 'dashboard.html';
+        })
+        .catch(error => {
+            console.error('Erro:', error);
+            exibirMensagemDeErroCadastro(error.message);
+            console.log(data, "Não Funcionou");
+        });
+}
 
 function visualizarDRE() {
     const cpf = localStorage.getItem('cpf');
-    console.log('cpf', cpf)
+    console.log('cpf1', cpf)
 
     fetch(`http://localhost:8091/transaction/cpf/${cpf}`, {
         method: 'GET',
@@ -191,7 +191,7 @@ function visualizarDRE() {
 
                 // ----- RESULTADO FINANCEIRO ----- \\ Trocar o "tipo_lancamento === 
                 const resultadoFinanceiroReceita = data.filter(transaction => transaction.tipo_lancamento === 'Rendimento financeiro');
-                
+
                 const totalResultadoFinanceiroReceita = resultadoFinanceiroReceita.reduce((total, transaction) => total + transaction.valor, 0);
 
                 const resultadoFinanceiroDespesa = data.filter(transaction => transaction.tipo_lancamento === 'Tarifas Bancárias' || transaction.tipo_lancamento === 'Juros e multas');
@@ -292,26 +292,29 @@ function visualizarLancamentos() {
 
             if (data.length > 0) {
                 tabela.destroy(); // Destrua a instância anterior da tabela
-
+            
                 data.forEach(result => {
                     // Criar uma nova linha para cada resultado
                     const novaLinha = tabelaBody.insertRow();
-
+            
                     // Adicionar células à nova linha
                     const cellNome = novaLinha.insertCell(0);
                     const cellTipoConta = novaLinha.insertCell(1);
                     const cellObservacoes = novaLinha.insertCell(2);
                     const cellData = novaLinha.insertCell(3);
                     const cellValor = novaLinha.insertCell(4);
-
+            
                     // Preencher as células com os valores do resultado
                     cellNome.innerText = result.tipo_lancamento;
                     cellTipoConta.innerText = result.tipo_conta;
                     cellObservacoes.innerText = result.observacao;
                     cellData.innerText = result.data_lancamento;
-                    cellValor.innerText = 'R$ ' + result.valor;
+            
+                    // Formatar o valor
+                    const valorFormatado = 'R$ ' + formatarValor(result.valor);
+                    cellValor.innerText = valorFormatado;
                 });
-
+            
                 tabela.init(); // Reinicialize a tabela com os novos dados
             } else {
                 console.error('Elemento com classe "tabelaBody" não encontrado ou nenhum dado retornado pela API.');
@@ -322,3 +325,110 @@ function visualizarLancamentos() {
         });
 }
 
+function formatarValor(valor) {
+    const numeroFormatado = valor.toLocaleString('pt-BR', {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2
+    });
+
+    return numeroFormatado.replace('.', ',');
+}
+
+function graficoReceitaDespesa(){
+    const cpf = localStorage.getItem('cpf');
+    console.log('cpf', cpf);
+
+    fetch(`http://localhost:8091/transaction/cpf/${cpf}`, {
+      method: 'GET',
+    })
+      .then(response => {
+        console.log('Status da resposta do fetch:', response.status);
+        return response.json();
+      })
+      .then(data => {
+        if (data.length > 0) {
+          console.log('Gráfico', data);
+          const receitas = data.filter(transaction => transaction.tipo_conta === 'Receita');
+          const despesas = data.filter(transaction => transaction.tipo_conta === 'Despesa');
+
+          // Ordenar receitas e despesas por data
+          const receitasOrdenadas = receitas.sort((a, b) => new Date(a.data_lancamento) - new Date(b.data_lancamento));
+          const despesasOrdenadas = despesas.sort((a, b) => new Date(a.data_lancamento) - new Date(b.data_lancamento));
+
+          // Extrair valores e datas para receitas
+          const valoresReceitas = receitasOrdenadas.map(receita => receita.valor);
+          const datasReceitas = receitasOrdenadas.map(receita => new Date(receita.data_lancamento).toISOString());
+
+          // Extrair valores e datas para despesas
+          const valoresDespesas = despesasOrdenadas.map(despesa => despesa.valor);
+          const datasDespesas = despesasOrdenadas.map(despesa => new Date(despesa.data_lancamento).toISOString());
+
+          const datasCompletas = [];
+          const dataAtual = new Date('2023-12-01');
+          const dataFinal = new Date('2023-12-31');
+          console.log('Gráfico2', data);
+          while (dataAtual <= dataFinal) {
+            datasCompletas.push(dataAtual.toISOString());
+            dataAtual.setDate(dataAtual.getDate() + 1);
+          }
+
+          document.addEventListener("DOMContentLoaded", () => {
+            new ApexCharts(document.querySelector("#reportsChart"), {
+              series: [{
+                name: 'Receitas',
+                data: valoresReceitas,
+              }, {
+                name: 'Despesas',
+                data: valoresDespesas
+              }],
+              chart: {
+                height: 350,
+                type: 'area',
+                toolbar: {
+                  show: false
+                },
+              },
+              markers: {
+                size: 4
+              },
+              colors: ['#4154f1', '#ff771d'],
+              fill: {
+                type: "gradient",
+                gradient: {
+                  shadeIntensity: 1,
+                  opacityFrom: 0.3,
+                  opacityTo: 0.4,
+                  stops: [0, 90, 100]
+                }
+              },
+              dataLabels: {
+                enabled: false
+              },
+              stroke: {
+                curve: 'smooth',
+                width: 2
+              },
+              xaxis: {
+                type: 'datetime',
+                categories: datasCompletas,
+              },
+              tooltip: {
+                x: {
+                  format: 'dd/MM/yy'
+                },
+              }
+            }).render();
+          });
+        } else {
+          elemento.innerText = 0;
+          elementoReceitaBruta.innerText = 0;
+          elementoDeducoesReceita.innerText = 0;
+          elementoReceitaLiquida.innerText = 0;
+          console.error('Elemento com classe "nomeElement" não encontrado.');
+        }
+      })
+      .catch(error => {
+        console.error('Erro ao obter informações do usuário:', error);
+      });
+
+  }
