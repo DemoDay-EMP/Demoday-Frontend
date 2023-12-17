@@ -38,7 +38,7 @@
   ======================================================== -->
 </head>
 
-<body onload="obterInformacoesUsuario()">
+<body onload="obterInformacoesUsuario(); consultaEndereco()">
 
  <!-- ======= Header ======= -->
  <header id="header" class="header fixed-top d-flex align-items-center">
@@ -410,12 +410,12 @@
 
                   <div class="row">
                     <div class="col-lg-3 col-md-4 label">Cidade</div>
-                    <div class="col-lg-9 col-md-8"></div>
+                    <div class="col-lg-9 col-md-8 cidade"></div>
                   </div>
 
                   <div class="row">
                     <div class="col-lg-3 col-md-4 label">Rua</div>
-                    <div class="col-lg-9 col-md-8"></div>
+                    <div class="col-lg-9 col-md-8 endereco"></div>
                   </div>
 
                 </div>
@@ -474,20 +474,7 @@
                       <label for="Address" class="col-md-4 col-lg-3 col-form-label">CEP</label>
                       <div class="col-md-8 col-lg-9">
                         <input name="address" type="text" class="form-control cepElement" id="cep" value="">
-                      </div>
-                    </div>
-
-                    <div class="row mb-3">
-                      <label for="Twitter" class="col-md-4 col-lg-3 col-form-label">Cidade</label>
-                      <div class="col-md-8 col-lg-9">
-                        <input name="twitter" type="text" class="form-control" id="cidade" value="">
-                      </div>
-                    </div>
-
-                    <div class="row mb-3">
-                      <label for="Facebook" class="col-md-4 col-lg-3 col-form-label">Rua</label>
-                      <div class="col-md-8 col-lg-9">
-                        <input name="facebook" type="text" class="form-control" id="rua" value="">
+                        <div id="cep-error" style="color: red;"></div>
                       </div>
                     </div>
 
@@ -635,6 +622,8 @@
   <script src="assets/js/mainFunction.js"></script>
   <script src="assets/js/script-login.js"></script>
   <script src="assets/js/fluxoCaixa.js"></script>
+
+
 
 </body>
 

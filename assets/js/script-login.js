@@ -164,8 +164,9 @@ function obterInformacoesUsuario() {
         })
         .then(data => {
             cpfDoUsuario = data.cpf;
+            cepDoUsuario = data.cep;
             console.log('cpf', cpfDoUsuario);
-            // localStorage.setItem('cpf', cpfDoUsuario);
+            localStorage.setItem('cep', cepDoUsuario);
             const nomeElementos = document.querySelectorAll('.nomeElement');
             const emailElementos = document.querySelectorAll('.emailElement');
             const dataElementos = document.querySelectorAll('.dataElement');
@@ -213,6 +214,9 @@ function obterInformacoesUsuario() {
 function formatarDataNascimento(dataNascimento) {
     const data = new Date(dataNascimento);
 
+    // Ajusta o fuso horário
+    data.setMinutes(data.getMinutes() + data.getTimezoneOffset());
+
     // Obtém o dia, mês e ano
     const dia = String(data.getDate()).padStart(2, '0');
     const mes = String(data.getMonth() + 1).padStart(2, '0'); // O mês é baseado em zero
@@ -221,6 +225,7 @@ function formatarDataNascimento(dataNascimento) {
     // Retorna a data formatada
     return `${dia}/${mes}/${ano}`;
 }
+
 
 function formatarDataParaAPI(data) {
     const partesData = data.split('/'); // Supondo que a data fornecida esteja no formato "dd/mm/aaaa"
@@ -347,3 +352,32 @@ loginBtn.addEventListener("click", (e) => {
     formContainer.classList.remove("active");
 });
 
+function consultaEndereco() {
+    let cep = localStorage.getItem('cep');
+    let cepError = document.getElementById("cep-error");
+    let cidadeInput = document.querySelector('.cidade');
+    let enderecoInput = document.querySelector('.endereco');
+
+    if (cep.length === 8) {
+        let url = `https://viacep.com.br/ws/${cep}/json/`;
+
+        fetch(url)
+            .then(response => response.json())
+            .then(dados => {
+                if (dados.erro) {
+                    cepError.innerHTML = "CEP inválido";
+                    cidadeInput.innerHTML = ""; // Limpar campo cidade
+                    enderecoInput.value = ""; // Limpar campo endereço
+                } else {
+                    // cepError.innerHTML = ""; // Limpar mensagem de erro se o CEP for válido
+                    cidadeInput.innerHTML = dados.localidade;
+                    enderecoInput.innerHTML = dados.logradouro;
+                }
+            })
+            .catch(error => console.error('Erro na requisição:', error));
+    } else {
+        cepError.innerHTML = "CEP inválido"; // Limpar mensagem de erro se o CEP for válido
+        cidadeInput.value = ""; // Limpar campo cidade
+        enderecoInput.value = ""; // Limpar campo endereço
+    }
+}
