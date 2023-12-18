@@ -106,7 +106,7 @@ function visualizarDRE() {
                 elementoDespesas.innerText = "R$ " + despesasFormatado;
 
                 // ----- SALDO ATUAL ----- \\
-                const totalSaldoAtual = totalReceitas - totalDespesas;
+                const totalSaldoAtual = totalReceitas + totalDespesas;
                 // Formata o dado para utilizar duas casas decimais e "," ao invés de "."
                 const saldoAtualFormatado = totalSaldoAtual.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
                 // Exibe o total na página
@@ -158,7 +158,7 @@ function visualizarDRE() {
                 elementoDeducoesReceita.innerText = "R$ " + deducoesReceitaFormatado;
 
                 // ----- RECEITA LÍQUIDA ----- \\
-                const receitaLiquida = totalReceitaBruta - totalDeducoesReceita;
+                const receitaLiquida = totalReceitaBruta + totalDeducoesReceita;
                 // Formata o dado para utilizar duas casas decimais e "," ao invés de "."
                 const receitaLiquidaFormatado = receitaLiquida.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
                 // Exibe o total na página
@@ -174,7 +174,7 @@ function visualizarDRE() {
                 elementoCustos.innerText = "R$ " + custosFormatado;
 
                 // ----- RESULTADO BRUTO ----- \\
-                const resultadoBruto = receitaLiquida - totalCustos;
+                const resultadoBruto = receitaLiquida + totalCustos;
                 // Formata o dado para utilizar duas casas decimais e "," ao invés de "."
                 const resultadoBrutoFormatado = resultadoBruto.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
                 // Exibe o total na página
@@ -237,7 +237,7 @@ function visualizarDRE() {
                 elementoParticipacoes.innerText = "R$ " + participacoesFormatado;
 
                 // ----- RESULTADO FINAL DO EXERCÍCIO ----- \\ Trocar o "tipo_lancamento === 
-                const resultadoFinal = resultadoBruto - totalDespesasOperacionais + totalResultadoFinanceiro + totalOutrasReceitas - totalIrpjCSLL - totalParticipacoes;
+                const resultadoFinal = resultadoBruto + totalDespesasOperacionais + totalResultadoFinanceiro + totalOutrasReceitas + totalIrpjCSLL + totalParticipacoes;
                 // Formata o dado para utilizar duas casas decimais e "," ao invés de "."
                 const resultadoFinalFormatado = resultadoFinal.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
                 // Exibe o total na página
