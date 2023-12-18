@@ -2061,6 +2061,11 @@ small{
   object-fit: cover;
 }
 
+.voluntario img{
+  border-radius: 100%;
+  border: 1px solid;
+}
+
 .equipe-margem{
   margin: 50px;
 }
