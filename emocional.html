@@ -99,19 +99,19 @@
       <i class="uil uil-times form_close"></i>
       <!-- Login From -->
       <div class="form login_form">
-        <form action="#">
+        <form action="#" id="login-form">
           <h2>Login</h2>
-
+  
           <div class="input_box">
-            <input type="email" placeholder="Insira seu email" required />
+            <input type="text" name="email" placeholder="Insira seu email"  />
             <i class="uil uil-envelope-alt email"></i>
           </div>
           <div class="input_box">
-            <input type="password" placeholder="Insira sua senha" required />
+            <input type="password" name="senha" placeholder="Insira sua senha"  />
             <i class="uil uil-lock password"></i>
             <i class="uil uil-eye-slash pw_hide"></i>
           </div>
-
+  
           <div class="option_field">
             <span class="checkbox">
               <input type="checkbox" id="check" />
@@ -119,35 +119,37 @@
             </span>
             <a href="#" class="forgot_pw">Esqueceu a senha?</a>
           </div>
-
-          <button class="button">Login</button>
-
+  
+          <button class="button" type="button" onclick="login()">Login</button>
+          <div id="mensagem-de-erro-login" style="color: red; font-size: 12px; font-weight: 0;"></div>
+  
           <div class="login_signup">Não possui uma conta? <a href="#" id="signup">Cadastre-se</a></div>
         </form>
       </div>
-
+  
       <!-- Signup From -->
       <div class="form signup_form">
-        <form action="#">
+        <form action="#" id="registration-form" enctype="multipart/form-data">
           <h2>Cadastrar</h2>
-
+  
           <div class="input_box">
-            <input type="email" placeholder="Insira seu email" required />
+            <input type="email" name="email" placeholder="Insira seu email" required />
             <i class="uil uil-envelope-alt email"></i>
           </div>
           <div class="input_box">
-            <input type="password" placeholder="Crie sua senha" required />
+            <input type="password" name="senha" placeholder="Crie sua senha" required />
             <i class="uil uil-lock password"></i>
             <i class="uil uil-eye-slash pw_hide"></i>
           </div>
           <div class="input_box">
-            <input type="password" placeholder="Confirme sua senha" required />
+            <input type="password" placeholder="Confirme sua senha" />
             <i class="uil uil-lock password"></i>
             <i class="uil uil-eye-slash pw_hide"></i>
           </div>
-
-          <button class="button">Cadastra-se</button>
-
+  
+          <button class="button" type="button" onclick="avancar()">Continuar</button>
+          <div id="mensagem-de-erro-cadastro" style="color: red; font-size: 12px; font-weight: 0;"></div>
+  
           <div class="login_signup">Já possui uma conta? <a href="#" id="login">Login</a></div>
         </form>
       </div>
@@ -569,14 +571,26 @@
     <!-- Vlibras fim -->
 
 <!-- Acessibilidade -->
-<script>(
-  function () {
-    var s = document.createElement("script");
-    s.setAttribute("data-account", "xHDSUQKusJ");
-    s.setAttribute("src", "https://cdn.userway.org/widget.js");
-    document.body.appendChild(s);
-  }
-  )();
+<script>(function () {
+  var s = document.createElement("script");
+  s.setAttribute("data-account", "xHDSUQKusJ");
+  s.setAttribute("src", "https://cdn.userway.org/widget.js");
+  document.body.appendChild(s);
+
+  // Ajuste a posição após a inserção do script
+  var style = document.createElement("style");
+  style.appendChild(document.createTextNode(`
+      body .uwy.userway_p1 .uai {
+          top: 393px !important;
+          right: auto !important;
+          bottom: auto !important;
+          left: 98.8vw !important;
+          transform: translate(-100%) !important;
+      }
+  `));
+  document.head.appendChild(style);
+})();
+
 </script>
 
 <script>

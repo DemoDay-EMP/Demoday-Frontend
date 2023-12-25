@@ -672,14 +672,26 @@
   <!-- Vlibras fim -->
 
   <!-- Acessibilidade -->
-  <script>(
-    function () {
-      var s = document.createElement("script");
-      s.setAttribute("data-account", "xHDSUQKusJ");
-      s.setAttribute("src", "https://cdn.userway.org/widget.js");
-      document.body.appendChild(s);
-    }
-    )();
+  <script>(function () {
+    var s = document.createElement("script");
+    s.setAttribute("data-account", "xHDSUQKusJ");
+    s.setAttribute("src", "https://cdn.userway.org/widget.js");
+    document.body.appendChild(s);
+
+    // Ajuste a posição após a inserção do script
+    var style = document.createElement("style");
+    style.appendChild(document.createTextNode(`
+        body .uwy.userway_p1 .uai {
+            top: 393px !important;
+            right: auto !important;
+            bottom: auto !important;
+            left: 98.8vw !important;
+            transform: translate(-100%) !important;
+        }
+    `));
+    document.head.appendChild(style);
+})();
+
   </script>
 
 
