@@ -26,7 +26,7 @@ function realizarLancamento() {
 
     console.log(data, "Testando");
 
-    fetch('http://localhost:8091/transaction/create', {
+    fetch('https://demoday-backend-production.up.railway.app/transaction/create', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -55,7 +55,7 @@ function visualizarDRE() {
     const cpf = localStorage.getItem('cpf');
     console.log('cpf1', cpf)
 
-    fetch(`http://localhost:8091/transaction/cpf/${cpf}`, {
+    fetch(`https://demoday-backend-production.up.railway.app/transaction/cpf/${cpf}`, {
         method: 'GET',
     })
         .then(response => {
@@ -278,7 +278,7 @@ const tabela = new simpleDatatables.DataTable('.datatable', {
 function visualizarLancamentos() {
     const cpf = localStorage.getItem('cpf');
 
-    fetch(`http://localhost:8091/transaction/cpf/${cpf}`, {
+    fetch(`https://demoday-backend-production.up.railway.app/transaction/cpf/${cpf}`, {
         method: 'GET',
     })
         .then(response => {
@@ -338,7 +338,7 @@ function graficoReceitaDespesa(){
     const cpf = localStorage.getItem('cpf');
     console.log('cpf', cpf);
 
-    fetch(`http://localhost:8091/transaction/cpf/${cpf}`, {
+    fetch(`https://demoday-backend-production.up.railway.app/transaction/cpf/${cpf}`, {
       method: 'GET',
     })
       .then(response => {

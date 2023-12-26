@@ -41,7 +41,7 @@ $(function () {
     function callChatApi(message) {
       $.ajax({
         type: "POST",
-        url: "http://localhost:8091/chat/sendMessage",
+        url: "https://demoday-backend-production.up.railway.app/chat/sendMessage",
         contentType: "text/plain",  // Alterado para indicar que você está enviando apenas texto
         data: message,  // A mensagem é enviada diretamente como texto
         success: function (response) {
