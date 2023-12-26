@@ -56,7 +56,7 @@ function cadastrarUsuario() {
 
     console.log(data, "Testando");
 
-    fetch('http://demoday-backend-production.up.railway.app/usuario_pf/create', {
+    fetch('https://demoday-backend-production.up.railway.app/usuario_pf/create', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -101,7 +101,7 @@ function login() {
     });
 
     console.log(dataLogin, "dataLogin");
-    fetch('http://demoday-backend-production.up.railway.app/usuario_pf/login', {
+    fetch('https://demoday-backend-production.up.railway.app/usuario_pf/login', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -155,7 +155,7 @@ function obterInformacoesUsuario() {
 
     console.log('Nome do usuário antes do fetch:', email);
 
-    fetch(`http://demoday-backend-production.up.railway.app/usuario_pf/search/email/${email}`, {
+    fetch(`https://demoday-backend-production.up.railway.app/usuario_pf/search/email/${email}`, {
         method: 'GET',
     })
         .then(response => {
@@ -265,7 +265,7 @@ function atualizarInformacoesUsuario() {
 
     console.log(data, 'valores do formulário');
 
-    fetch(`http://demoday-backend-production.up.railway.app/usuario_pf/update/cpf/${cpf}`, {
+    fetch(`https://demoday-backend-production.up.railway.app/usuario_pf/update/cpf/${cpf}`, {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json',
@@ -293,7 +293,7 @@ function atualizarInformacoesUsuario() {
 function deletarUsuario() {
     const cpf = localStorage.getItem('cpf');
 
-    fetch(`http://demoday-backend-production.up.railway.app/usuario_pf/delete/cpf/${cpf}`, {
+    fetch(`https://demoday-backend-production.up.railway.app/usuario_pf/delete/cpf/${cpf}`, {
         method: 'DELETE',
         headers: {
             'Content-Type': 'application/json',
