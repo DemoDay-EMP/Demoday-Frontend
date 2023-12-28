@@ -12,7 +12,7 @@ O EMP é um projeto dedicado a oferecer suporte tanto na gestão financeira quan
 - JavaScript: Para a lógica e interatividade.
 - Bootstrap: Um framework front-end que agiliza o desenvolvimento e garante uma experiência responsiva.
 
-<h2>🤝 Nossa Equipe:</h2>
+<h2>Nossa Equipe:</h2>
 
 <table>
   <tr>
