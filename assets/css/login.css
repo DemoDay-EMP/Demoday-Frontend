@@ -61,10 +61,11 @@ a {
   /* background-image: url("bg.jpg"); */
   background-size: cover;
   background-position: center;
+  padding: 0px;
 }
 .home::before {
   content: "";
-  position: absolute;
+  position: fixed;
   height: 100%;
   width: 100%;
   background-color: rgba(0, 0, 0, 0.6);
