@@ -106,7 +106,7 @@ function visualizarDRE() {
                 elementoDespesas.innerText = "R$ " + despesasFormatado;
 
                 // ----- SALDO ATUAL ----- \\
-                const totalSaldoAtual = totalReceitas + totalDespesas;
+                const totalSaldoAtual = totalReceitas - totalDespesas;
                 // Formata o dado para utilizar duas casas decimais e "," ao invés de "."
                 const saldoAtualFormatado = totalSaldoAtual.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
                 // Exibe o total na página
@@ -137,9 +137,10 @@ function visualizarDRE() {
                 elementoSaldoPrevisto.innerText = "R$ " + saldoPrevistoFormatado;
 
 
+                // ----- DRE ----- \\
                 // ----- RECEITA BRUTA ----- \\
                 // Filtra as transações com tipo "Venda de produto"
-                const receitaBruta = data.filter(transaction => transaction.tipo_lancamento === 'Venda de produto' || transaction.tipo_lancamento === 'Prestação de serviço');
+                const receitaBruta = data.filter(transaction => transaction.tipo_lancamento === 'Venda de produto' || transaction.tipo_lancamento === 'Venda de serviço');
                 // Soma os valores das transações filtradas
                 const totalReceitaBruta = receitaBruta.reduce((total, transaction) => total + transaction.valor, 0);
                 // Formata o dado para utilizar duas casas decimais e "," ao invés de "."
@@ -174,7 +175,7 @@ function visualizarDRE() {
                 elementoCustos.innerText = "R$ " + custosFormatado;
 
                 // ----- RESULTADO BRUTO ----- \\
-                const resultadoBruto = receitaLiquida + totalCustos;
+                const resultadoBruto = receitaLiquida - totalCustos;
                 // Formata o dado para utilizar duas casas decimais e "," ao invés de "."
                 const resultadoBrutoFormatado = resultadoBruto.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
                 // Exibe o total na página
@@ -237,7 +238,7 @@ function visualizarDRE() {
                 elementoParticipacoes.innerText = "R$ " + participacoesFormatado;
 
                 // ----- RESULTADO FINAL DO EXERCÍCIO ----- \\ Trocar o "tipo_lancamento === 
-                const resultadoFinal = resultadoBruto + totalDespesasOperacionais + totalResultadoFinanceiro + totalOutrasReceitas + totalIrpjCSLL + totalParticipacoes;
+                const resultadoFinal = resultadoBruto - totalDespesasOperacionais - totalResultadoFinanceiro - totalOutrasReceitas - totalIrpjCSLL - totalParticipacoes;
                 // Formata o dado para utilizar duas casas decimais e "," ao invés de "."
                 const resultadoFinalFormatado = resultadoFinal.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
                 // Exibe o total na página
@@ -334,102 +335,102 @@ function formatarValor(valor) {
     return numeroFormatado.replace('.', ',');
 }
 
-function graficoReceitaDespesa(){
-    const cpf = localStorage.getItem('cpf');
-    console.log('cpf', cpf);
+// function graficoReceitaDespesa(){
+//     const cpf = localStorage.getItem('cpf');
+//     console.log('Gráfico Receitas x Despesas', cpf);
 
-    fetch(`https://demoday-backend-production.up.railway.app/transaction/cpf/${cpf}`, {
-      method: 'GET',
-    })
-      .then(response => {
-        console.log('Status da resposta do fetch:', response.status);
-        return response.json();
-      })
-      .then(data => {
-        if (data.length > 0) {
-          console.log('Gráfico', data);
-          const receitas = data.filter(transaction => transaction.tipo_conta === 'Receita');
-          const despesas = data.filter(transaction => transaction.tipo_conta === 'Despesa');
+//     fetch(`https://demoday-backend-production.up.railway.app/transaction/cpf/${cpf}`, {
+//       method: 'GET',
+//     })
+//       .then(response => {
+//         console.log('Status da resposta do fetch:', response.status);
+//         return response.json();
+//       })
+//       .then(data => {
+//         if (data.length > 0) {
+//           console.log('Gráfico', data);
+//           const receitas = data.filter(transaction => transaction.tipo_conta === 'Receita');
+//           const despesas = data.filter(transaction => transaction.tipo_conta === 'Despesa');
 
-          // Ordenar receitas e despesas por data
-          const receitasOrdenadas = receitas.sort((a, b) => new Date(a.data_lancamento) - new Date(b.data_lancamento));
-          const despesasOrdenadas = despesas.sort((a, b) => new Date(a.data_lancamento) - new Date(b.data_lancamento));
+//           // Ordenar receitas e despesas por data
+//           const receitasOrdenadas = receitas.sort((a, b) => new Date(a.data_lancamento) - new Date(b.data_lancamento));
+//           const despesasOrdenadas = despesas.sort((a, b) => new Date(a.data_lancamento) - new Date(b.data_lancamento));
 
-          // Extrair valores e datas para receitas
-          const valoresReceitas = receitasOrdenadas.map(receita => receita.valor);
-          const datasReceitas = receitasOrdenadas.map(receita => new Date(receita.data_lancamento).toISOString());
+//           // Extrair valores e datas para receitas
+//           const valoresReceitas = receitasOrdenadas.map(receita => receita.valor);
+//           const datasReceitas = receitasOrdenadas.map(receita => new Date(receita.data_lancamento).toISOString());
 
-          // Extrair valores e datas para despesas
-          const valoresDespesas = despesasOrdenadas.map(despesa => despesa.valor);
-          const datasDespesas = despesasOrdenadas.map(despesa => new Date(despesa.data_lancamento).toISOString());
+//           // Extrair valores e datas para despesas
+//           const valoresDespesas = despesasOrdenadas.map(despesa => despesa.valor);
+//           const datasDespesas = despesasOrdenadas.map(despesa => new Date(despesa.data_lancamento).toISOString());
 
-          const datasCompletas = [];
-          const dataAtual = new Date('2023-12-01');
-          const dataFinal = new Date('2023-12-31');
-          console.log('Gráfico2', data);
-          while (dataAtual <= dataFinal) {
-            datasCompletas.push(dataAtual.toISOString());
-            dataAtual.setDate(dataAtual.getDate() + 1);
-          }
+//           const datasCompletas = [];
+//           const dataAtual = new Date('2023-12-01');
+//           const dataFinal = new Date('2023-12-31');
+//           console.log('Gráfico2', data);
+//           while (dataAtual <= dataFinal) {
+//             datasCompletas.push(dataAtual.toISOString());
+//             dataAtual.setDate(dataAtual.getDate() + 1);
+//           }
 
-          document.addEventListener("DOMContentLoaded", () => {
-            new ApexCharts(document.querySelector("#reportsChart"), {
-              series: [{
-                name: 'Receitas',
-                data: valoresReceitas,
-              }, {
-                name: 'Despesas',
-                data: valoresDespesas
-              }],
-              chart: {
-                height: 350,
-                type: 'area',
-                toolbar: {
-                  show: false
-                },
-              },
-              markers: {
-                size: 4
-              },
-              colors: ['#4154f1', '#ff771d'],
-              fill: {
-                type: "gradient",
-                gradient: {
-                  shadeIntensity: 1,
-                  opacityFrom: 0.3,
-                  opacityTo: 0.4,
-                  stops: [0, 90, 100]
-                }
-              },
-              dataLabels: {
-                enabled: false
-              },
-              stroke: {
-                curve: 'smooth',
-                width: 2
-              },
-              xaxis: {
-                type: 'datetime',
-                categories: datasCompletas,
-              },
-              tooltip: {
-                x: {
-                  format: 'dd/MM/yy'
-                },
-              }
-            }).render();
-          });
-        } else {
-          elemento.innerText = 0;
-          elementoReceitaBruta.innerText = 0;
-          elementoDeducoesReceita.innerText = 0;
-          elementoReceitaLiquida.innerText = 0;
-          console.error('Elemento com classe "nomeElement" não encontrado.');
-        }
-      })
-      .catch(error => {
-        console.error('Erro ao obter informações do usuário:', error);
-      });
+//           document.addEventListener("DOMContentLoaded", () => {
+//             new ApexCharts(document.querySelector("#reportsChart"), {
+//               series: [{
+//                 name: 'Receitas',
+//                 data: valoresReceitas,
+//               }, {
+//                 name: 'Despesas',
+//                 data: valoresDespesas
+//               }],
+//               chart: {
+//                 height: 350,
+//                 type: 'area',
+//                 toolbar: {
+//                   show: false
+//                 },
+//               },
+//               markers: {
+//                 size: 4
+//               },
+//               colors: ['#4154f1', '#ff771d'],
+//               fill: {
+//                 type: "gradient",
+//                 gradient: {
+//                   shadeIntensity: 1,
+//                   opacityFrom: 0.3,
+//                   opacityTo: 0.4,
+//                   stops: [0, 90, 100]
+//                 }
+//               },
+//               dataLabels: {
+//                 enabled: false
+//               },
+//               stroke: {
+//                 curve: 'smooth',
+//                 width: 2
+//               },
+//               xaxis: {
+//                 type: 'datetime',
+//                 categories: datasCompletas,
+//               },
+//               tooltip: {
+//                 x: {
+//                   format: 'dd/MM/yy'
+//                 },
+//               }
+//             }).render();
+//           });
+//         } else {
+//           elemento.innerText = 0;
+//           elementoReceitaBruta.innerText = 0;
+//           elementoDeducoesReceita.innerText = 0;
+//           elementoReceitaLiquida.innerText = 0;
+//           console.error('Elemento com classe "nomeElement" não encontrado.');
+//         }
+//       })
+//       .catch(error => {
+//         console.error('Erro ao obter informações do usuário:', error);
+//       });
 
-  }
+//   }
   

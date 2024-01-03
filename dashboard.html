@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 
 <head>
   <meta charset="utf-8">
@@ -576,101 +576,116 @@
                   <div id="reportsChart"></div>
 
                   <script>
-                    const cpf = localStorage.getItem('cpf');
-                    console.log('cpf nos gráficos', cpf);
+                    document.addEventListener("DOMContentLoaded", () => {
+  // Renderizar uma estrutura básica do gráfico no DOM
+  const chart = new ApexCharts(document.querySelector("#reportsChart"), {
+    series: [{
+      name: 'Receitas',
+      data: [],
+    }, {
+      name: 'Despesas',
+      data: []
+    }],
+    chart: {
+      height: 350,
+      type: 'area',
+      toolbar: {
+        show: false
+      },
+    },
+    markers: {
+      size: 4
+    },
+    colors: ['#4154f1', '#ff771d'],
+    fill: {
+      type: "gradient",
+      gradient: {
+        shadeIntensity: 1,
+        opacityFrom: 0.3,
+        opacityTo: 0.4,
+        stops: [0, 90, 100]
+      }
+    },
+    dataLabels: {
+      enabled: false
+    },
+    stroke: {
+      curve: 'smooth',
+      width: 2
+    },
+    xaxis: {
+      type: 'datetime',
+      categories: []
+    },
+    tooltip: {
+      x: {
+        format: 'dd/MM/yy'
+      },
+    }
+  });
 
-                    fetch(`http://localhost:8091/transaction/cpf/${cpf}`, {
-                      method: 'GET',
-                    })
-                      .then(response => {
-                        console.log('Status da resposta do fetch:', response.status);
-                        return response.json();
-                      })
-                      .then(data => {
-                        if (data.length > 0) {
-                          console.log('Gráfico', data);
-                          const receitas = data.filter(transaction => transaction.tipo_conta === 'Receita');
-                          const despesas = data.filter(transaction => transaction.tipo_conta === 'Despesa');
+  chart.render();
 
-                          // Ordenar receitas e despesas por data
-                          const receitasOrdenadas = receitas.sort((a, b) => new Date(a.data_lancamento) - new Date(b.data_lancamento));
-                          const despesasOrdenadas = despesas.sort((a, b) => new Date(a.data_lancamento) - new Date(b.data_lancamento));
+  const cpf = localStorage.getItem('cpf');
+  console.log('cpf nos gráficos', cpf);
 
-                          // Extrair valores e datas para receitas
-                          const valoresReceitas = receitasOrdenadas.map(receita => receita.valor);
-                          const datasReceitas = receitasOrdenadas.map(receita => new Date(receita.data_lancamento).toISOString());
+  fetch(`https://demoday-backend-production.up.railway.app/transaction/cpf/${cpf}`, {
+    method: 'GET',
+  })
+    .then(response => {
+      console.log('Status da resposta do fetch:', response.status);
+      return response.json();
+    })
+    .then(data => {
+      if (data.length > 0) {
+        console.log('Gráfico', data);
+        const receitas = data.filter(transaction => transaction.tipo_conta === 'Receita');
+        console.log('Receita', receitas);
+        const despesas = data.filter(transaction => transaction.tipo_conta === 'Despesa');
+        console.log('Despesa', despesas);
 
-                          // Extrair valores e datas para despesas
-                          const valoresDespesas = despesasOrdenadas.map(despesa => despesa.valor);
-                          const datasDespesas = despesasOrdenadas.map(despesa => new Date(despesa.data_lancamento).toISOString());
+        // Ordenar receitas e despesas por data
+        const receitasOrdenadas = receitas.sort((a, b) => new Date(a.data_lancamento) - new Date(b.data_lancamento));
+        const despesasOrdenadas = despesas.sort((a, b) => new Date(a.data_lancamento) - new Date(b.data_lancamento));
 
-                          const datasCompletas = [];
-                          const dataAtual = new Date('2023-12-01');
-                          const dataFinal = new Date('2023-12-31');
-                          console.log('Gráfico2', data);
-                          while (dataAtual <= dataFinal) {
-                            datasCompletas.push(dataAtual.toISOString());
-                            dataAtual.setDate(dataAtual.getDate() + 1);
-                          }
+        // Extrair valores e datas para receitas
+        const valoresReceitas = receitasOrdenadas.map(receita => receita.valor);
+        const datasReceitas = receitasOrdenadas.map(receita => new Date(receita.data_lancamento).toISOString());
 
-                          document.addEventListener("DOMContentLoaded", () => {
-                            new ApexCharts(document.querySelector("#reportsChart"), {
-                              series: [{
-                                name: 'Receitas',
-                                data: valoresReceitas,
-                              }, {
-                                name: 'Despesas',
-                                data: valoresDespesas
-                              }],
-                              chart: {
-                                height: 350,
-                                type: 'area',
-                                toolbar: {
-                                  show: false
-                                },
-                              },
-                              markers: {
-                                size: 4
-                              },
-                              colors: ['#4154f1', '#ff771d'],
-                              fill: {
-                                type: "gradient",
-                                gradient: {
-                                  shadeIntensity: 1,
-                                  opacityFrom: 0.3,
-                                  opacityTo: 0.4,
-                                  stops: [0, 90, 100]
-                                }
-                              },
-                              dataLabels: {
-                                enabled: false
-                              },
-                              stroke: {
-                                curve: 'smooth',
-                                width: 2
-                              },
-                              xaxis: {
-                                type: 'datetime',
-                                categories: datasCompletas,
-                              },
-                              tooltip: {
-                                x: {
-                                  format: 'dd/MM/yy'
-                                },
-                              }
-                            }).render();
-                          });
-                        } else {
-                          elemento.innerText = 0;
-                          elementoReceitaBruta.innerText = 0;
-                          elementoDeducoesReceita.innerText = 0;
-                          elementoReceitaLiquida.innerText = 0;
-                          console.error('Elemento com classe "nomeElement" não encontrado.');
-                        }
-                      })
-                      .catch(error => {
-                        console.error('Erro ao obter informações do usuário:', error);
-                      });
+        // Extrair valores e datas para despesas
+        const valoresDespesas = despesasOrdenadas.map(despesa => despesa.valor);
+        const datasDespesas = despesasOrdenadas.map(despesa => new Date(despesa.data_lancamento).toISOString());
+
+        const datasCompletas = [];
+        const dataAtual = new Date('2023-12-01');
+        const dataFinal = new Date('2023-12-31');
+        console.log('Valores da Receita', valoresReceitas);
+        console.log('Valores da Despesa', valoresDespesas);
+        while (dataAtual <= dataFinal) {
+          datasCompletas.push(dataAtual.toISOString());
+          dataAtual.setDate(dataAtual.getDate() + 1);
+        }
+
+        // Atualizar o gráfico com os dados
+        chart.updateSeries([{
+          data: valoresReceitas,
+        }, {
+          data: valoresDespesas
+        }]);
+        chart.updateOptions({
+          xaxis: {
+            categories: datasCompletas,
+          },
+        });
+      } else {
+        console.error('Elemento com classe "nomeElement" não encontrado.');
+      }
+    })
+    .catch(error => {
+      console.error('Erro ao obter informações do usuário:', error);
+    });
+});
+
 
                   </script>
                   <!-- End Line Chart -->
@@ -975,7 +990,7 @@
               <script>
                 console.log('cpf', cpf);
 
-                fetch(`http://localhost:8091/transaction/cpf/${cpf}`, {
+                fetch(`https://demoday-backend-production.up.railway.app/transaction/cpf/${cpf}`, {
                   method: 'GET',
                 })
                   .then(response => {
