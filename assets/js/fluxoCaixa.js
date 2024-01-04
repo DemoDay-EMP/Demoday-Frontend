@@ -309,8 +309,9 @@ function visualizarLancamentos() {
                     cellNome.innerText = result.tipo_lancamento;
                     cellTipoConta.innerText = result.tipo_conta;
                     cellObservacoes.innerText = result.observacao;
-                    cellData.innerText = result.data_lancamento;
-            
+                    const dataFormatada = formatarDataNascimento(result.data_lancamento);
+                    console.log(dataFormatada)
+                    cellData.innerText = dataFormatada;
                     // Formatar o valor
                     const valorFormatado = 'R$ ' + formatarValor(result.valor);
                     cellValor.innerText = valorFormatado;
@@ -327,13 +328,14 @@ function visualizarLancamentos() {
 }
 
 function formatarValor(valor) {
-    const numeroFormatado = valor.toLocaleString('pt-BR', {
-        minimumFractionDigits: 2,
-        maximumFractionDigits: 2
-    });
+  const numeroFormatado = valor.toLocaleString('pt-BR', {
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2
+  });
 
-    return numeroFormatado.replace('.', ',');
+  return numeroFormatado;
 }
+
 
 // function graficoReceitaDespesa(){
 //     const cpf = localStorage.getItem('cpf');
